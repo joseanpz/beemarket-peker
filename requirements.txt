@@ -7,6 +7,7 @@ django-extra-views==0.6.4
 django-filter==0.9.2
 django-filters==0.1.0
 django-frontend==1.6.1
+django-frontend-skeleton==3.0.0
 django-haystack==2.3.1
 django-localflavor==1.1
 django-oscar==1.0.2
