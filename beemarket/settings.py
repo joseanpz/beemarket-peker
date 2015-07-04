@@ -19,10 +19,9 @@ os.environ["LANGUAGE"] = 'es_MX'
 # Oscar's imports
 from oscar import get_core_apps, OSCAR_MAIN_TEMPLATE_DIR
 from oscar.defaults import *
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-    OSCAR_MAIN_TEMPLATE_DIR,
-)
+
+
+
 #OSCAR_MAIN_TEMPLATE_DIR = os.path.join(BASE_DIR,
 #                                       '..',
 #                                       'carritoenv', 'local',
@@ -97,7 +96,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'peker', 'templates'),
             OSCAR_MAIN_TEMPLATE_DIR
         ],
         'APP_DIRS': True,
@@ -214,9 +213,10 @@ AUTHENTICATION_BACKENDS = (
 # Search Backend
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
-        'URL': 'http://127.0.0.1:8983/solr',
-        'INCLUDE_SPELLING': True,
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200',
+        'INDEX_NAME': 'haystack',
+        #'INCLUDE_SPELLING': True,
     },
 }
 
