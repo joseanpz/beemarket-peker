@@ -60,8 +60,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'paypal.standard',
     'paypal.pro',
+    'peker',
+    'peker.templatetags',
     'djfrontend',
-    #'djfrontend.skeleton',
+    'djfrontend.skeleton',
     #'dashboard.cmproducts',
     #'corsheaders',
     #'maravatioapp',
@@ -178,7 +180,7 @@ OSCAR_DEFAULT_CURRENCY = 'MXN'
 
 THUMBNAIL_DEBUG = True
 
-
+OSCAR_PRODUCTS_PER_PAGE = 6
 
 OSCAR_INITIAL_ORDER_STATUS = 'Pending'
 OSCAR_INITIAL_LINE_STATUS = 'Pending'
@@ -248,6 +250,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'), )
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
