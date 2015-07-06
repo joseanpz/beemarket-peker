@@ -6,6 +6,262 @@
     {% trans "Basket" %} | {{ block.super }}
 {% endblock %}
 
+
+{% block content_peker %}
+      <section class="return-control">
+        <div class="container">
+          <a href="#" class="return-ctrl">Regresar</a>
+        </div>
+      </section>
+      <!-- end Return Control -->
+      <!-- Cart Section -->
+      <section class="cart-section">
+        <div class="container">
+          <!-- Page Title -->
+          <section class="page-title clearfix">
+            <h1>Mi carrito</h1>
+            <div class="title-block cart-controls">
+              <a href="#" class="red-btn">vaciar carrito</a>
+              <a href="#" class="black-btn">actualizar carrito</a>
+              <a href="#" class="form__btn">pagar</a>
+            </div>
+          </section>
+          <!-- end Page Title -->
+          <!-- Cart List Products -->
+          <section class="cart-list-products">
+            <div class="cart__item">
+              <div class="row clearfix">
+                <div class="col-md-6 col-sm-6">
+                  <div class="cart__product-info">
+                    <div class="row clearfix">
+                      <div class="col-xs-3">
+                        <div class="preview-item__img">
+                          <a href="#" class="card-trigger">
+                            <img src="http://placehold.it/500x500" alt="" class="img-responsive">
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="preview-item__desc">
+                          <a href="#" class="card-trigger">
+                            <h1>Nombre del producto</h1>
+                          </a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam consequuntur obcaecati.</p>
+                        </div>
+                      </div>
+                      <div class="col-xs-3">
+                        <div class="preview-item__price">
+                          <span>$209.00</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="cart__product-controls">
+                    <div class="row clearfix">
+                      <div class="col-sm-4 col-xs-6">
+                        <div class="count__input clearfix">
+                          <a href="#" id="sub" class="sub">-</a>
+                          <input type="text" value="1" name="guests" id="count-input" class="count-input" disabled="disabled">
+                          <a href="#" id="add" class="add">+</a>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-xs-6">
+                        <div class="preview-item__price">
+                          <span>$209.00</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-xs-12">
+                        <div class="cart__product-actions clearfix">
+                          <a href="#" class="edit">
+                            <i class="fa fa-refresh"></i>
+                            <span>Actualizar</span>
+                          </a>
+                          <a href="#" class="remove">
+                            <i class="fa fa-times-circle"></i>
+                            <span>Eliminar</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cart__item">
+              <div class="row clearfix">
+                <div class="col-md-6 col-sm-6">
+                  <div class="cart__product-info">
+                    <div class="row clearfix">
+                      <div class="col-xs-3">
+                        <div class="preview-item__img">
+                          <a href="#" class="card-trigger">
+                            <img src="http://placehold.it/500x500" alt="" class="img-responsive">
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="preview-item__desc">
+                          <a href="#" class="card-trigger">
+                            <h1>Nombre del producto</h1>
+                          </a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam consequuntur obcaecati.</p>
+                        </div>
+                      </div>
+                      <div class="col-xs-3">
+                        <div class="preview-item__price">
+                          <span>$209.00</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="cart__product-controls">
+                    <div class="row clearfix">
+                      <div class="col-sm-4 col-xs-6">
+                        <div class="count__input clearfix">
+                          <a href="#" class="sub">-</a>
+                          <input type="text" value="1" name="guests" class="count-input" disabled="disabled">
+                          <a href="#" class="add">+</a>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-xs-6">
+                        <div class="preview-item__price">
+                          <span>$209.00</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-xs-12">
+                        <div class="cart__product-actions clearfix">
+                          <a href="#" class="edit">
+                            <i class="fa fa-refresh"></i>
+                            <span>Actualizar</span>
+                          </a>
+                          <a href="#" class="remove">
+                            <i class="fa fa-times-circle"></i>
+                            <span>Eliminar</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cart__item last">
+              <div class="row clearfix">
+                <div class="col-md-6 col-sm-6">
+                  <div class="cart__product-info">
+                    <div class="row clearfix">
+                      <div class="col-xs-3">
+                        <div class="preview-item__img">
+                          <a href="#" class="card-trigger">
+                            <img src="http://placehold.it/500x500" alt="" class="img-responsive">
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="preview-item__desc">
+                          <a href="#" class="card-trigger">
+                            <h1>Nombre del producto</h1>
+                          </a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam consequuntur obcaecati.</p>
+                        </div>
+                      </div>
+                      <div class="col-xs-3">
+                        <div class="preview-item__price">
+                          <span>$209.00</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="cart__product-controls">
+                    <div class="row clearfix">
+                      <div class="col-sm-4 col-xs-6">
+                        <div class="count__input clearfix">
+                          <a href="#" id="sub" class="sub">-</a>
+                          <input type="text" value="1" name="guests" id="count-input" class="count-input" disabled="disabled">
+                          <a href="#" id="add" class="add">+</a>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-xs-6">
+                        <div class="preview-item__price">
+                          <span>$209.00</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-xs-12">
+                        <div class="cart__product-actions clearfix">
+                          <a href="#" class="edit">
+                            <i class="fa fa-refresh"></i>
+                            <span>Actualizar</span>
+                          </a>
+                          <a href="#" class="remove">
+                            <i class="fa fa-times-circle"></i>
+                            <span>Eliminar</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- end Cart List Products -->
+          <!-- Cart Actions Section -->
+          <section class="cart-actions-section">
+            <div class="row clearfix">
+              <div class="col-md-5 col-sm-4 col-xs-12">
+                <div class="action__continue">
+                  <a href="#">Continuar comprando</a>
+                </div>
+              </div>
+              <div class="col-md-7 col-sm-8 col-xs-12">
+                <div class="row clearfix">
+                  <div class="col-sm-5 col-xs-12">
+                    <div class="action__promo">
+                      <h1>Código de descuento</h1>
+                      <p>Ingresa tu código de descuento si cuentas con uno.</p>
+                      <form action="#" method="post" id="promo-code" class="clearfix">
+                        <div class="promo__input">
+                          <input type="text" name="code">
+                        </div>
+                        <div class="promo__submit">
+                          <button type="submit"><i class="fa fa-angle-double-right"></i></button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-sm-7 col-xs-12">
+                    <div class="action__resume-total clearfix">
+                      <table class="table table-bordered">
+                        <tbody>
+                          <tr>
+                            <td>Subtotal</td>
+                            <td class="action__price">MXN $<span>0.00</span></td>
+                          </tr>
+                          <tr>
+                            <td>Total</td>
+                            <td class="action__price">MXN $<span>0.00</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <a href="#" class="form__btn">Pagar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- end Cart Actions Section -->
+        </div>
+      </section>
+{% endblock %}
+
+
 {% block breadcrumbs %}
     <ul class="breadcrumb">
         <li>
