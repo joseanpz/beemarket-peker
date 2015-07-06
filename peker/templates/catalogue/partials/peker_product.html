@@ -1,0 +1,65 @@
+{% extends 'catalogue/partials/product.html' %}
+
+{% load peker_currency_filters %}
+{% load purchase_info_tags %}
+{% load staticfiles %}
+
+{% load basket_tags %}
+{% load i18n %}
+
+
+{% block product %}
+    <div class="col-sm-6 col-xs-12">
+        <div class="product__item">
+            <div class="new-tag">
+                <h1>Agregado</h1>
+            </div>
+            <div class="item__img">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="{{ product.primary_image.original.url }}" alt="{{ product.get_title }}" class="img-responsive">
+                </a>
+
+                {% purchase_info_for_product request product as session %}
+                <div class="item__overlay clearfix">
+                    <div class="overlay__btn details">
+                        <a href="{{ product.get_absolute_url }}" class="card-trigger">Detalles</a>
+                    </div>
+                    <div class="overlay__btn cart">
+                        {% if session.availability.is_available_to_buy %}
+                        {% basket_form request product 'single' as basket_form %}
+                        <form action="{% url 'basket:add' pk=product.pk %}" method="post">
+                            {% csrf_token %}
+                            {{ basket_form.as_p }}
+                         <button type="submit" class="">{% trans "Add to basket" %}</button>
+                         <i class="fa fa-cart-plus"></i>
+                        </form>
+                        {% else %}
+
+                            <a href="#">
+                            <span>No disponible</span>
+                            <i class="fa fa-cart-plus"></i>
+                        </a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="item__info">
+                <div class="info__product clearfix">
+                    <div class="product__name">
+                        <span>{{ product.get_title }}</span>
+                    </div>
+
+                    <div class="product__price">
+                        <span>{{ session.price.incl_tax|currency:session.price.currency }}</span>
+                    </div>
+                </div>
+
+                <div class="info__category">
+                    <span>{{ first_category }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

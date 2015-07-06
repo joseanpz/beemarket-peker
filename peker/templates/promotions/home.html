@@ -1,0 +1,229 @@
+{% extends "layout_2_col.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block navigation %}
+    {% include "partials/nav_primary.html" with expand_dropdown=1 home=1 %}
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block column_left %}
+{% endblock %}
+
+{% block content_peker %}
+
+      <!-- Slider Section -->
+      <section class="slider-section">
+        <div id="main-slider" class="royalSlider rsDefault">
+          <div class="rsContent">
+            <img class="rsImg" src="{% static 'peker/images/slide__img.jpg' %}" alt="" />
+            <div class="slider__caption rsABlock">
+              <h1 class="caption__title">Soluciones para el hogar</h1>
+              <div class="caption__txt">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque quasi expedita voluptatum quae voluptatibus.</p>
+              </div>
+              <a class="caption__btn" href="#">Comprar</a>
+            </div>
+          </div>
+          <div class="rsContent">
+            <img class="rsImg" src="{% static 'peker/images/slide__img.jpg' %}" alt="" />
+            <div class="slider__caption rsABlock">
+              <h1 class="caption__title">Soluciones para el hogar</h1>
+              <div class="caption__txt">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque quasi expedita voluptatum quae voluptatibus.</p>
+              </div>
+              <a class="caption__btn" href="#">Comprar</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Slider Section -->
+      <!-- Menu Boxes -->
+      <section class="menu-boxes-section clearfix">
+        <div class="box__item" data-hover="0">
+          <a href="#">
+            <h1 class="box__title">Tienda</h1>
+            <img src="{% static 'peker/images/menu__item--1.jpg' %}" alt="" class="img-responsive box__img">
+          </a>
+        </div>
+        <div class="box__item" data-hover="1">
+          <a href="#">
+            <h1 class="box__title">Compañia</h1>
+            <img src="{% static 'peker/images/menu__item--2.jpg' %}" alt="" class="img-responsive box__img">
+          </a>
+        </div>
+        <div class="box__item" data-hover="2">
+          <a href="#">
+            <h1 class="box__title">Contacto</h1>
+            <img src="{% static 'peker/images/menu__item--3.jpg' %}" alt="" class="img-responsive box__img">
+          </a>
+        </div>
+      </section>
+      <!-- end Menu Boxes -->
+      <!-- About Section -->
+      <section class="about-section clearfix">
+        <div class="about__img">
+          <img src="{% static 'peker/images/about__img.jpg' %}" alt="" class="img-responsive">
+          <img src="{% static 'peker/images/brand__logo.png' %}" alt="" class="about__logo">
+        </div>
+        <div class="about__txt">
+          <p>Peker es una empresa con más de 6 años de experiencia en el mercado de la fabricación de muebles contemporáneos de madera y reciclados de alta calidad con iseños exclusivos e innovadores y a precios competitivos.</p>
+          <p>Nace en Paracho Michoacán en el 2008, al descubrir una oportunidad de satisfacer la necesidad de mueble minimalista y contemporáneo, tendencia que hasta el día de hoy continua ofreciendo soluciones para el hogar y la oficina.</p>
+        </div>
+      </section>
+      <!-- end About Section -->
+      <!-- Product grid Section -->
+      <section class="product-section">
+        <div class="container">
+          <h1 class="product__title">Productos</h1>
+          <div class="product__items index">
+            <div class="row clearfix">
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="product__item new-product">
+                  <div class="new-tag">
+                    <h1>Nuevo</h1>
+                  </div>
+                  <div class="item__img">
+                      <img src="{% static 'peker/images/product__img--1.jpg' %}" alt="" class="img-responsive">
+                      <div class="item__overlay clearfix">
+                        <div class="overlay__btn details">
+                          <a href="#" class="card-trigger">Detalles</a>
+                        </div>
+                        <div class="overlay__btn cart">
+                          <a href="#">
+                            <span>Añadir</span>
+                            <i class="fa fa-cart-plus"></i>
+                          </a>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="item__info">
+                    <div class="info__product clearfix">
+                      <div class="product__name">
+                        <span>Italia</span>
+                      </div>
+                      <div class="product__price">
+                        <span>$9999.99</span>
+                      </div>
+                    </div>
+                    <div class="info__category">
+                      <span>Recamara</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="product__item">
+                  <div class="new-tag">
+                    <h1>Nuevo</h1>
+                  </div>
+                  <div class="item__img">
+                      <img src="{% static 'peker/images/product__img--2.jpg' %}" alt="" class="img-responsive">
+                      <div class="item__overlay clearfix">
+                        <div class="overlay__btn details">
+                          <a href="#" class="card-trigger">Detalles</a>
+                        </div>
+                        <div class="overlay__btn cart">
+                          <a href="#">
+                            <span>Añadir</span>
+                            <i class="fa fa-cart-plus"></i>
+                          </a>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="item__info">
+                    <div class="info__product clearfix">
+                      <div class="product__name">
+                        <span>Emperador</span>
+                      </div>
+                      <div class="product__price">
+                        <span>$9999.99</span>
+                      </div>
+                    </div>
+                    <div class="info__category">
+                      <span>Antecomedor</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="product__item">
+                  <div class="new-tag">
+                    <h1>Nuevo</h1>
+                  </div>
+                  <div class="item__img">
+                      <img src="{% static 'peker/images/product__img--3.jpg' %}" alt="" class="img-responsive">
+                      <div class="item__overlay clearfix">
+                        <div class="overlay__btn details">
+                          <a href="#" class="card-trigger">Detalles</a>
+                        </div>
+                        <div class="overlay__btn cart">
+                          <a href="#">
+                            <span>Añadir</span>
+                            <i class="fa fa-cart-plus"></i>
+                          </a>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="item__info">
+                    <div class="info__product clearfix">
+                      <div class="product__name">
+                        <span>Duque</span>
+                      </div>
+                      <div class="product__price">
+                        <span>$9999.99</span>
+                      </div>
+                    </div>
+                    <div class="info__category">
+                      <span>Bufetero</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="product__item">
+                  <div class="new-tag">
+                    <h1>Nuevo</h1>
+                  </div>
+                  <div class="item__img">
+                      <img src="{% static 'peker/images/product__img--4.jpg' %}" alt="" class="img-responsive">
+                      <div class="item__overlay clearfix">
+                        <div class="overlay__btn details">
+                          <a href="#" class="card-trigger">Detalles</a>
+                        </div>
+                        <div class="overlay__btn cart">
+                          <a href="#">
+                            <span>Añadir</span>
+                            <i class="fa fa-cart-plus"></i>
+                          </a>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="item__info">
+                    <div class="info__product clearfix">
+                      <div class="product__name">
+                        <span>España</span>
+                      </div>
+                      <div class="product__price">
+                        <span>$9999.99</span>
+                      </div>
+                    </div>
+                    <div class="info__category">
+                      <span>Recamara</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end Product grid Section -->
+
+
+{% endblock %}
+
+{% block content %}
+
+{% endblock content %}

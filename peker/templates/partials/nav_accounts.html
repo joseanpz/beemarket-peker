@@ -1,0 +1,129 @@
+{% load i18n %}
+{% load staticfiles %}
+
+{% comment %}<div id="top_page" class="navbar navbar-static-top accounts">
+    <div class="navbar-inner">
+
+        {# This is used in mobile view #}
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".account-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+        <div class="nav-collapse account-collapse collapse">
+            <div class="container-fluid">
+                {% if LANGUAGES|length > 1 %}
+                    <form id="language_selector" class="pull-left navbar-form" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ language_neutral_url_path }}" />
+                        <select name="language">
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE%} selected="selected"{% endif %}>
+                                    {{ language.name_local }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn" type="submit">{% trans "Go" %}</button>
+                    </form>
+                {% endif %}
+                <ul class="nav pull-right">
+                    {% if user.is_authenticated %}
+                        <li>
+                            {% if num_unread_notifications > 0 %}
+                                {# If user has new notifications - we change account link to go to inbox #}
+                                <a href="{% url 'customer:notifications-inbox' %}">
+                                    <i class="icon-user"></i>
+                                    {% trans "Account" %}
+                                    <span class="label label-important">{{ num_unread_notifications }}</span>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'customer:summary' %}"><i class="icon-user"></i> {% trans "Account" %}</a>
+                            {% endif %}
+                        </li>
+                        {% if user.is_staff or perms.partner.dashboard_access %}
+                            <li><a href="{% url 'dashboard:index' %}"><i class="icon-list-ul"></i> {% trans "Dashboard" %}</a></li>
+                        {% endif %}
+                        <li><a id="logout_link" href="{% url 'customer:logout' %}"><i class="icon-signout"></i> {% trans "Logout" %}</a></li>
+                    {% else %}
+                        <li><a id="login_link" href="{% url 'customer:login' %}"><i class="icon-signin"></i> {% trans "Login or register" %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>{% endcomment %}
+      <section class="top-bar-section clearfix">
+        <div class="top__phone clearfix">
+          <a href="#" id="top-phone" class="track-link" data-track="phone-header">
+            <img src="{% static "peker/images/phone__icon.png" %}" alt="">
+          </a>
+          <a href="tel:00000000" id="top-number">00-00-00-00-00</a>
+          <!-- Brand Logo Mobil -->
+          <div class="brand right small-device">
+            <h1 class="brand__logo">
+              <a href="{% url 'promotions:home' %}" class="brand__link menuzord-brand" title="Peker">Peker</a>
+            </h1>
+          </div>
+          <!-- end Brand Logo Mobil -->
+        </div>
+        <div class="top__nav clearfix">
+          {% if user.is_authenticated %}
+          <a href="{% url 'customer:login' %}" class="nav__item login-link"> Bienvenido(a) {{ user }}</a>
+          {% else %}
+          <a href="{% url 'customer:login' %}" class="nav__item login-link">Acceso</a>
+          {% endif %}
+          <a href="#" class="cart__top-btn nav__item" id="cart-header-btn">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="cart__label">Carrito</span>
+            <span class="quantity">0</span>
+          </a>
+          <a href="contacto.html" class="nav__item">Contacto</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'customer:logout' %}" class="nav__item login-link"> Salir</a>
+          {% endif %}
+        </div>
+        <!-- Cart View -->
+        <div class="cart-preview-section isNotShow" id="cart-header">
+          <div class="cart-header-wrapper">
+            <div class="preview__list">
+              <div class="preview__items">
+                <div class="preview__item first">
+                  <div class="row clearfix">
+                    <div class="col-xs-3">
+                      <div class="preview-item__img">
+                        <a href="#" class="card-trigger">
+                          <img src="http://placehold.it/500x500" alt="" class="img-responsive">
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="preview-item__desc">
+                        <a href="#" class="card-trigger">
+                          <h1>Nombre del producto</h1>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam consequuntur obcaecati.</p>
+                      </div>
+                    </div>
+                    <div class="col-xs-3">
+                      <div class="preview-item__price">
+                        <span>$829.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="preview__total clearfix">
+                <span class="preview-total__title left">Total:</span>
+                <span class="preview-total__price right">$1,247.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="preview__btns clearfix">
+            <a href="carrito.html" class="preview-btns__btn tocart left">Ver Carrito</a>
+            <a href="login-checkout.html" class="preview-btns__btn tocheck right">Checkout</a>
+          </div>
+        </div>
+        <!-- end Cart View -->
+      </section>

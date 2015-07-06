@@ -1,0 +1,136 @@
+{% load currency_filters %}
+{% load category_tags %}
+{% load staticfiles %}
+{% load i18n %}
+{% comment %}
+<div class="navbar primary navbar-static-top navbar-inverse">
+    <div class="navbar-inner">
+
+        {# This is used in mobile view #}
+        <a class="btn btn-navbar btn-nav-collapse" data-toggle="collapse" data-target=".primary-collapse">
+            <span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </span>
+        </a>
+
+        <a class="btn btn-navbar btn-cart visible-phone" href="{% url 'basket:summary' %}">
+            <i class="icon-shopping-cart"></i>
+            {% trans "Basket" %}
+            {% if not request.basket.is_empty %}
+                {% if request.basket.is_tax_known %}
+                    {% blocktrans with total=request.basket.total_incl_tax|currency:request.basket.currency %}
+                        Total: {{ total }}
+                    {% endblocktrans %}
+                {% else %}
+                    {% blocktrans with total=request.basket.total_excl_tax|currency:request.basket.currency %}
+                        Total: {{ total }}
+                    {% endblocktrans %}
+                {% endif %}
+            {% endif %}
+        </a>
+
+        <div class="nav-collapse primary-collapse collapse">
+            {% block nav_dropdown %}
+                <ul id="browse" class="nav">
+                    <li class="dropdown active {% if expand_dropdown %}open{% endif %}">
+                        <a href="#" class="dropdown-toggle" {% if not expand_dropdown %} data-toggle="dropdown"{% endif %}>
+                            {% trans "Browse store" %}
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" data-navigation="dropdown-menu">
+                            {% category_tree as tree_categories %}
+                            <li><a tabindex="-1" href="{% url 'catalogue:index' %}">{% trans "All products" %}</a></li>
+                            {% if tree_categories %}
+                                <li class="divider"></li>
+                                {% for tree_category, info in tree_categories %}
+                                    {% if info.has_children %}
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+                                            <ul class="dropdown-menu">
+                                            {% else %}
+                                                <li><a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a></li>
+                                            {% endif %}
+
+                                            {% for close in info.num_to_close %}
+                                                </ul></li>
+                                            {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                            <li class="divider"></li>
+                            {% block nav_dropdown_extra_items %}
+                                <li><a href="{% url 'offer:list' %}">{% trans "Offers" %}</a></li>
+                            {% endblock %}
+                        </ul>
+                    </li>
+                    {% block nav_extra %}
+                    {% endblock %}
+                </ul>
+            {% endblock %}
+            {% include "partials/search.html" %}
+        </div><!-- /nav-collapse -->
+
+    </div><!-- /navbar-inner -->
+</div><!-- /navbar -->{% endcomment %}
+      <nav class="main-nav {% if not home %} solid{% endif %}">
+        <div class="container">
+          <div class="head-nav clearfix">
+            {% comment %}<!-- Search -->
+            <div class="head-search right clearfix large-device">
+              <form action="">
+                <input class="search-input" type="text" placeholder="Ingrese su Búsqueda">
+                <button class="search-btn" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </form>
+            </div>
+            <!-- end Search -->{% endcomment %}
+            <!-- Main Nav -->
+            <div id="menuzord" class="menuzord left clearfix">
+              <!-- Brand Logo -->
+              <div class="brand left large-device">
+                <h1 class="brand__logo">
+                  <a href="{% url 'promotions:home' %}" class="brand__link menuzord-brand" title="Peker">Peker</a>
+                </h1>
+              </div>
+              <!-- end Brand Logo -->
+              {% comment %}<!-- Search Mobil -->
+              <div class="head-search right clearfix small-device">
+                <form action="">
+                  <input class="search-input" type="text" placeholder="Ingrese su Búsqueda">
+                  <button class="search-btn" type="button">
+                    <img src="{% static 'peker/images/search__icon.png' %}" alt="">
+                  </button>
+                </form>
+              </div>
+              <!-- end Search Mobil -->{% endcomment %}
+              {% category_tree depth=1 as tree_categories %}
+
+              <ul class="menuzord-menu">
+                  <li><a tabindex="" href="{% url 'catalogue:index' %}">Tienda</a></li>
+                  {% for tree_category, info in tree_categories %}
+                      {% if info.has_children %}
+                          <li class="">
+                          <a tabindex="" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+                          <ul class="">
+                      {% else %}
+                          <li><a tabindex="" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+                          </li>
+                      {% endif %}
+
+                      {% for close in info.num_to_close %}
+                          </ul></li>
+                      {% endfor %}
+                  {% endfor %}
+                  {% comment %}<li><a href="grid.html">Recamaras</a></li>
+                  <li><a href="grid.html">Salas</a></li>
+                  <li><a href="grid.html">Comedores</a></li>
+                  <li><a href="grid.html">Antecomedores</a></li>{% endcomment %}
+              </ul>
+            </div>
+            <!-- end Main Nav -->
+          </div>
+        </div>
+      </nav>
+      <!-- end Nav Menu -->

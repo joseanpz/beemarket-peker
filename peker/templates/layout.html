@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load compress %}
+{% load promotion_tags %}
+{% load staticfiles %}
+
+{% comment %}{% block styles %}{% endblock %}{% endcomment %}
+{% block extrastyles %}
+    <link rel="stylesheet" href="{% static "peker/styles/vendor.css"%}">
+    <link rel="stylesheet" href="{% static "peker/styles/main.css"%}">
+    <link rel="stylesheet" href="http://beemarket.mx/peker/styles/vendor/slider.css">
+{% endblock %}
+
+{% block layout %}
+{# Top-horizontal bar with account, notifictions, dashboard links #}
+    {% include "partials/nav_accounts.html" %}
+
+    {# Site logo/title, mini-basket, browse dropdown and searchbox #}
+    <header>
+        {% comment %}<div class="page_inner">
+            ESTA CLASE LA QUITE AL HEADER class="header container-fluid"
+            <div class="row-fluid">
+                {% include "partials/brand.html" %}
+                {# Mini-basket wrapped in a block so some templates can now display it #}
+                {% block mini_basket %}{% include "partials/mini_basket.html" %}{% endblock %}
+            </div>
+        </div>{% endcomment %}
+        {% block navigation %}
+            {% include "partials/nav_primary.html" %}
+        {% endblock %}
+    </header>
+    <main>{% block content_peker %}{% endblock %}</main>
+
+    {# Main content of page - other layout templates may override this block #}
+    {% block content_wrapper %}
+
+        <div class="container-fluid page">
+            <div class="page_inner">
+                {% block breadcrumbs %}{% endblock %}
+                {% block header %}
+                    <div class="page-header action">
+                        <h1>{% block headertext %}{% endblock %}</h1>
+                    </div>
+                {% endblock %}
+                {% include "partials/alert_messages.html" %}
+                {% block subnavigation %}{% endblock %}
+                <div class="content">
+                    {% block subheader %}{% endblock subheader %}
+
+                    {# Render promotions #}
+                    <div id="promotions">
+                        {% for promotion in promotions_page %}
+                            {% render_promotion promotion %}
+                        {% endfor %}
+                    </div>
+
+                    {# Div exists for AJAX updates to entire content section #}
+                    <div id="content_inner">{% block content %}{% endblock %}</div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% include "partials/footer.html" %}
+{% endblock %}
+
+{% block extrascripts %}
+    {% include "partials/extrascripts.html" %}
+    {{ block.super }}
+{% endblock %}

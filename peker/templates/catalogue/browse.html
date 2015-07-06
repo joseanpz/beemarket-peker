@@ -1,0 +1,229 @@
+{% extends "layout_2_col.html" %}
+
+{% load basket_tags %}
+{% load promotion_tags %}
+{% load category_tags %}
+{% load product_tags %}
+{% load peker_product_tags %}
+{% load staticfiles %}
+{% load replace %}
+
+{% load i18n %}
+
+{% block title %}
+    {% if summary %}{{ summary }} |{% endif %} {{ block.super }}
+{% endblock %}
+
+{% block headertext %}{{ summary }}{% endblock %}
+
+
+
+{% block head_section %}
+    {% comment %}<img src="{% static 'peker/images/slide__img.jpg'%}" alt="" class="img-responsive">
+    <h1 class="category__title">Tienda</h1>{% endcomment %}
+{% endblock %}
+
+{% block head_title %}
+    <span><a href="{{ homepage_url }}">{% trans "Home" %}</a> /  Tienda </span></span>
+{% endblock %}
+
+
+{% block side_categories %}
+{% comment %}<h1 class="filter__title">Categorías</h1>
+    <p><a href="http://beemarket.mx/peker/categoria/2/recamaras">
+                                <strong>Recámaras</strong>
+                            </a></p>{% endcomment %}
+    {% category_tree as tree_categories %}
+    {% if tree_categories %}
+        <div class="filter__box">
+            <ul class="">
+                {% for tree_category, info in tree_categories %}
+                    <li><p>
+                    {% if tree_category.pk == category.pk %}
+                        <strong>{{ tree_category.name }}</strong>
+                    {% else %}
+                        <a href="{% replace search="catalogue" replacement="search" %}{{ tree_category.get_absolute_url }}{% endreplace %}">{{ tree_category.name }}</a>
+                    {% endif %}
+
+                    {% if info.has_children %}<ul>{% else %}</p></li>{% endif %}
+                    {% for n in info.num_to_close %}
+                        </ul></p></li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+
+{% block side_filters %}
+
+    <h1 class="filter__title">Filtros</h1>
+
+    <form method="get" id="search_box" action="">
+        <!--<p class="tl-orange tl-filter">Clave del producto</p>
+            <input type="text" id="clave" name="clave"  class="form-control" placeholder="Clave del producto">-->
+
+        <p>Nombre del producto</p>
+
+        <p><input type="text" id="producto" name="producto" maxlength="50" class="form-control" value=""
+                  placeholder="Producto"></p>
+
+        <p>Rango de precio</p>
+
+        <div>
+            <span>$0.00</span>
+            <span class="right">$23,233.00</span>
+
+        <div class="slider slider-horizontal">
+            <div class="slider-track">
+                <div class="slider-selection" style="left: 0%; width: 1.42008778724503%;"></div>
+                <div class="slider-handle round" tabindex="0" style="left: 0%;"></div>
+                <div class="slider-handle round" tabindex="0" style="left: 1.42008778724503%;"></div>
+            </div>
+            <div id="tooltip" class="tooltip top" style="top: -30px; left: -48.2603924606248px;">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-inner">$0.00 : $330.00</div>
+            </div>
+            <div id="tooltip_min" class="tooltip top" style="top: -30px; left: -23px;">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-inner">$0.00</div>
+            </div>
+            <div id="tooltip_max" class="tooltip bottom" style="top: 18px; left: -26.0207849212497px;">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-inner">$330.00</div>
+            </div>
+            <input id="precio" name="precio" class="form-control" type="text" data-slider-min="0"
+                   data-slider-max="23238" data-slider-step="5" data-slider-value="[0,2025]" style="display: none;">
+        </div>
+        </div>
+        <p class="tl-orange tl-filter">Orden de precio</p>
+
+        <p>
+            <input type="radio" name="orden" id="orden" value="asc"> Ascendente <br>
+            <input type="radio" name="orden" id="orden" value="desc" checked=""> Descendente <br>
+        </p>
+
+
+        <div class="side__btn text-centered">
+            <button class="form__btn" id="search_btn" type="submit">Buscar
+            </button>
+        </div>
+    </form>
+{% endblock %}
+
+
+{% block items %}
+    {% for product in products %}
+        {% render_peker_product product %}
+    {% endfor %}
+    {% include "partials/pagination.html" %}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    {% comment %}<ul class="breadcrumb">
+        <li>
+            <a href="{{ homepage_url }}">{% trans "Home" %}</a>
+            <span class="divider">/</span>
+        </li>
+        <li class="active">{{ summary }}</li>
+    </ul>{% endcomment %}
+    {% comment %}<section class="head-title">
+        <span><a href="{{ homepage_url }}">{% trans "Home" %}</a></span>
+        <span class="divider">/</span>
+        <span class="active">{{ summary }}</span>
+    </section>{% endcomment %}
+{% endblock breadcrumbs %}
+
+{% block column_left %}
+    {% comment %}{% category_tree as tree_categories %}
+    {% if tree_categories %}
+        <h4>{% trans "Show results for" %}</h4>
+        <div class="side_categories">
+            <ul class="nav nav-list">
+                {% for tree_category, info in tree_categories %}
+                    <li>
+                    {% if tree_category.pk == category.pk %}
+                        <strong>{{ tree_category.name }}</strong>
+                    {% else %}
+                        <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+                    {% endif %}
+
+                    {% if info.has_children %}<ul>{% else %}</li>{% endif %}
+                    {% for n in info.num_to_close %}
+                        </ul></li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% if has_facets %}
+        <h4>{% trans "Refine by" %}</h4>
+        <div class="side_categories">
+            {% for field, data in facet_data.items %}
+                {% if data.results %}
+                    {% include 'search/partials/facet.html' with name=data.name items=data.results %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}{% endcomment %}
+{% endblock %}
+
+{% block content %}
+
+    <form method="get" class="form-horizontal">
+        {# Render other search params in a hidden block #}
+        <div style="display:none">
+            {% for value in selected_facets %}
+                <input name="selected_facets" value="{{ value }}" />
+            {% endfor %}
+            {{ form.q }}
+        </div>
+
+        {% if paginator.count %}
+            {% if paginator.num_pages > 1 %}
+                {% blocktrans with start=page_obj.start_index end=page_obj.end_index num_results=paginator.count %}
+                    <strong>{{ num_results }}</strong> results - showing <strong>{{ start }}</strong> to <strong>{{ end }}</strong>.
+                {% endblocktrans %}
+            {% else %}
+                {% blocktrans count num_results=paginator.count %}
+                    <strong>1</strong> result.
+                {% plural %}
+                    <strong>{{ num_results }}</strong> results.
+                {% endblocktrans %}
+            {% endif %}
+            {% if form %}
+                <div class="pull-right">
+                    {% include "partials/form_field.html" with field=form.sort_by %}
+                </div>
+            {% endif %}
+        {% else %}
+            <p>
+                {% trans "<strong>0</strong> results." %}
+            </p>
+        {% endif %}
+    </form>
+
+    {% if products %}
+        <section>
+            <div>
+                <ol class="row-fluid">
+                    {% for product in products %}
+                        <li class="span3 {% if forloop.counter0|divisibleby:"4" %}no-margin{% endif %}">{% render_product product %}</li>
+                    {% endfor %}
+                </ol>
+                {% include "partials/pagination.html" %}
+            </div>
+        </section>
+    {% else %}
+        <p class="nonefound">{% trans "No products found." %}</p>
+    {% endif %}
+
+{% endblock content %}
+
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.search.init();
+{% endblock %}
