@@ -1,94 +1,4 @@
-var Zoom = function (e, t, o) {
-    function n(e) {
-        r = t.extend({}, a, e || {}), v()
-    }
-
-    var a = {el: ".zoom"}, r = {}, i = {}, c = {}, l = {}, s = !1, u = null, d = null, m = null, h = Vec2D.ObjectVector(0, 0), g = Vec2D.ObjectVector(0, 0), p = Vec2D.ObjectVector(0, 0), f = Vec2D.ObjectVector(0, 0);
-    n.prototype.scale = function (e) {
-        var t = x(e.value * l.width, l.width, l.width * e.to), o = t * l.height / l.width;
-        d.css({width: t, heigth: o, top: x(p.y, m.outerHeight() - o, 0), left: x(p.x, m.outerWidth() - t, 0)})
-    };
-    var v = function () {
-        ("ontouchstart"in e || e.DocumentTouch && document instanceof DocumentTouch) && (s = !0), i = s ? {
-            start: "touchstart",
-            end: "touchend",
-            move: "touchmove"
-        } : {
-            start: "mousedown",
-            end: "mouseup",
-            move: "mousemove"
-        }, u = t(t(r.el).length ? r.el : a.el), d = u.find(".zoom-image"), m = u.find(".zoom-mask"), l = d[0].getBoundingClientRect(), p.setAxes(l.left, l.top), b()
-    }, b = function () {
-        d.on(i.start, function (e) {
-            this.allowUp = this.scrollTop > 0, this.allowDown = this.scrollTop < this.scrollHeight - this.clientHeight, this.prevTop = null, this.prevBot = null, this.lastY = event.pageY, h.setAxes($(e).x, $(e).y), t(document).on(i.end, w), t(document).on(i.move, y), d.on("dragstart", function (e) {
-                e.preventDefault()
-            })
-        })
-    }, w = function (e) {
-        t("html").removeClass("disable-selection"), t(document).off(i.move, y), t(document).off(i.end, w)
-    }, y = function (e) {
-        var o = event.pageY > this.lastY, n = !o;
-        this.lastY = event.pageY, o && this.allowUp || n && this.allowDown ? event.stopPropagation() : event.preventDefault();
-        var a = $(e);
-        c = {
-            top: m.outerHeight() - d.height(),
-            left: m.outerWidth() - d.width(),
-            right: 0,
-            bottom: 0
-        }, t("html").addClass("disable-selection"), g.setAxes(a.x, a.y);
-        var r = g.x - h.x, i = g.y - h.y, l = x(p.x + r, c.left, c.right), s = x(p.y + i, c.top, c.bottom);
-        f.setAxes(l, s), d.css({left: f.x, top: f.y}), h.setAxes(g.x, g.y), p.setAxes(f.x, f.y)
-    }, $ = function (e) {
-        var t = 0, o = 0;
-        return e.originalEvent.targetTouches ? (t = e.originalEvent.targetTouches[0].pageX, o = e.originalEvent.targetTouches[0].pageY) : e.pageX || e.pageY ? (t = e.pageX, o = e.pageY) : (e.clientX || e.clientY) && (t = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft, o = e.clientY + document.body.scrollTop + document.documentElement.scrollTop), {
-            x: t,
-            y: o
-        }
-    }, x = function (e, t, o) {
-        return Math.min(Math.max(e, t), o)
-    };
-    return n
-}(window, jQuery), Range = function (e, t, o) {
-    function n(e) {
-        l = t.extend({}, c, e || {}), g()
-    }
-
-    var a, r, i, c = {
-        from: 1, to: 10, step: 1, el: ".range", onStateChange: function (e) {
-        }
-    }, l = {}, s = null, u = !1, d = {}, m = 0, h = {}, g = function () {
-        ("ontouchstart"in e || e.DocumentTouch && document instanceof DocumentTouch) && (u = !0), d = u ? {
-            start: "touchstart",
-            end: "touchend",
-            move: "touchmove"
-        } : {
-            start: "mousedown",
-            end: "mouseup",
-            move: "mousemove"
-        }, a = t(t(l.el).length ? l.el : c.el), r = a[0], i = a.find(".range-thumb"), s = a.find(".range-track"), h = {
-            left: s.position().left,
-            right: s.width() - i.width()
-        }, p()
-    }, p = function () {
-        i.on(d.start, function (e) {
-            e.preventDefault(), m = b(e).x - i.position().left, t(document).on(d.end, f), t(document).on(d.move, v)
-        })
-    }, f = function (e) {
-        t(document).off(d.move, v), t(document).off(d.end, f)
-    }, v = function (e) {
-        var t = b(e), o = (l.to - l.from) / (h.right - h.left), n = t.x - m, a = (n - h.left) * o + l.from, r = w(n, h.left, h.right);
-        i.css({left: r}), a = w(a, l.from, l.to), l.onStateChange({value: a, from: l.from, to: l.to})
-    }, b = function (e) {
-        var t = 0, o = 0;
-        return e.originalEvent.targetTouches ? (t = e.originalEvent.targetTouches[0].pageX, o = e.originalEvent.targetTouches[0].pageY) : e.pageX || e.pageY ? (t = e.pageX, o = e.pageY) : (e.clientX || e.clientY) && (t = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft, o = e.clientY + document.body.scrollTop + document.documentElement.scrollTop), {
-            x: t,
-            y: o
-        }
-    }, w = function (e, t, o) {
-        return Math.min(Math.max(e, t), o)
-    };
-    return n
-}(window, jQuery), track = function () {
+var track = function () {
     var e = {}, t = function (t) {
         e = t, o()
     }, o = function () {
@@ -185,6 +95,24 @@ var searchHeadFunction = function () {
         t.toggleClass("scaleImg")
     };
     e.hover(t)
+}(), cardFunction = function () {
+    var e = $(".card-trigger"), t = $(".close-card"), o = $(".card-section"), n = $(".card-bg"), a = ($("body"), function (e) {
+        e.preventDefault(), TweenMax.to(n, .33, {display: "block", opacity: .8}), TweenMax.to(o, .33, {
+            delay: .33,
+            scale: 1,
+            left: "50%",
+            right: "50%",
+            x: "-50%",
+            y: "-50%"
+        })
+    }), r = function (e) {
+        e.preventDefault(), TweenMax.to(o, .33, {scale: 0}), TweenMax.to(n, .33, {
+            delay: .33,
+            display: "none",
+            opacity: 0
+        })
+    };
+    e.on("click", a), t.on("click", r)
 }(), formCount = function () {
     var e = $(".add"), t = $(".sub"), o = ($(".count-input"), null), n = null, a = null, r = function (e) {
         o = $(e.target), n = o.siblings(".count-input"), a = parseInt(n.attr("value")), a += 1, n.attr("value", a), e.preventDefault()
@@ -238,16 +166,16 @@ $("#map").gmap3({
     messages: {
         email: {
             required: "Campo obligatorio",
-            email: "Su dirección de correo electrónico debe estar en el formato nombre@dominio.com"
-        }, pass: {required: "Campo obligatorio", minlength: "Su contraseña debe contener minimo 6 caractéres"}
+            email: "Su direcciÃ³n de correo electrÃ³nico debe estar en el formato nombre@dominio.com"
+        }, pass: {required: "Campo obligatorio", minlength: "Su contraseÃ±a debe contener minimo 6 caractÃ©res"}
     }
 }), $("#popup-form").validate({
     rules: {email: {required: !0, email: !0}, pass: {required: !0, minlength: 6}},
     messages: {
         email: {
             required: "Campo obligatorio",
-            email: "Su dirección de correo electrónico debe estar en el formato nombre@dominio.com"
-        }, pass: {required: "Campo obligatorio", minlength: "Su contraseña debe contener minimo 6 caractéres"}
+            email: "Su direcciÃ³n de correo electrÃ³nico debe estar en el formato nombre@dominio.com"
+        }, pass: {required: "Campo obligatorio", minlength: "Su contraseÃ±a debe contener minimo 6 caractÃ©res"}
     }
 }), $("#register-form").validate({
     rules: {
@@ -255,20 +183,20 @@ $("#map").gmap3({
         lastname: "required",
         email: {required: !0, email: !0},
         pass: {required: !0, minlength: 8},
-        confPass: {required: !0, minlength: 8, equalTo: "#password"}
+        confPass: {required: !0, minlength: 8, equalTo: "#pass"}
     },
     messages: {
         name: "Campo obligatorio",
         lastname: "Campo obligatorio",
         email: {
             required: "Campo obligatorio",
-            email: "Su dirección de correo electrónico debe estar en el formato nombre@dominio.com"
+            email: "Su direcciÃ³n de correo electrÃ³nico debe estar en el formato nombre@dominio.com"
         },
-        pass: {required: "Campo obligatorio", minlength: "Su contraseña debe contener minimo 8 caractéres"},
+        pass: {required: "Campo obligatorio", minlength: "Su contraseÃ±a debe contener minimo 8 caractÃ©res"},
         confPass: {
-            required: "Campo obligatorio, confirme la contraseña que escribió en el campo anterior",
-            minlength: "Su contraseña debe contener minimo 8 caractéres",
-            equalTo: "Las contraseñas no coinciden"
+            required: "Campo obligatorio, confirme la contraseÃ±a que escribiÃ³ en el campo anterior",
+            minlength: "Su contraseÃ±a debe contener minimo 8 caractÃ©res",
+            equalTo: "Las contraseÃ±as no coinciden"
         }
     }
 }), $("#contact-form").validate({
@@ -282,17 +210,17 @@ $("#map").gmap3({
     messages: {
         name: "Campo obligatorio",
         email: {
-            required: "Necesitamos su dirección de correo electrónico para contactar con usted",
-            email: "Su dirección de correo electrónico debe estar en el formato nombre@dominio.com"
+            required: "Necesitamos su direcciÃ³n de correo electrÃ³nico para contactar con usted",
+            email: "Su direcciÃ³n de correo electrÃ³nico debe estar en el formato nombre@dominio.com"
         },
         phone: {
-            required: "Necesitamos su teléfono para contactar con usted",
-            number: "Su numero teléfonico debe contener 10 numeros sin espacios"
+            required: "Necesitamos su telÃ©fono para contactar con usted",
+            number: "Su numero telÃ©fonico debe contener 10 numeros sin espacios"
         },
         subject: "Campo obligatorio",
         comments: "Campo obligatorio"
     }
 }), $("#promo-code").validate({
     rules: {code: "required"},
-    messages: {code: "Introduzca un código válido"}
+    messages: {code: "Introduzca un cÃ³digo vÃ¡lido"}
 }), track.init({el: ".track-link"});
