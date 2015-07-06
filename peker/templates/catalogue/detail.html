@@ -17,38 +17,31 @@
     {{ product.description|default:""|striptags }}
 {% endblock %}
 
-{% block breadcrumbs %}
-<ul class="breadcrumb">
-    <li>
-        <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-        <span class="divider">/</span>
-    </li>
-    {% with category=product.categories.all.0 %}
-        {% for c in category.get_ancestors_and_self %}
-        <li>
-            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-            <span class="divider">/</span>
-        </li>
-        {% endfor %}
-        <li class="active">{{ product.title }}</li>
-
-        {% get_back_button as backbutton %}
-        {% if backbutton %}
-            <li class="pull-right">
-                <a href="{{ backbutton.url }}">
-                    <i class="icon-arrow-left"></i> {{ backbutton.title }}
-                </a>
-            </li>
-        {% endif %}
-    {% endwith %}
-</ul>
-{% endblock %}
 
 {% block header %}
 {% endblock header %}
 
 
+
+
 {% block content_peker %}
+    {% block zoom %}
+        <div id="zoom">
+          <p>Arrastrar dentro del area visible para explorar</p>
+          <div class="zoom">
+            <div class="zoom-inner">
+              <div class="zoom-container">
+                <div class="zoom-mask">
+                  <img class="zoom-image" src=""/>
+                </div>
+                <img class="zoom-image zoom-image-overlay" src=""/>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endblock zoom %}
+
+    <!-- Detail -->
 	<div class="card-section">
 		<div class="card-content">
             <div class="container">
@@ -66,7 +59,10 @@
                             <!-- Detail Right -->
                             <div class="col-md-6 col-sm-12 col-xs-12">
                                 {% if user.is_authenticated and user.is_staff %}
-                                    <a class="pull-right hidden-phone" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
+                                    <a class="pull-right text-success edit-from-detail hidden-sm" 
+                                        href="{% url 'dashboard:catalogue-product' pk=product.id %}">
+                                        <i class="fa fa-edit"></i> {% trans "Edit this product" %}
+                                    </a>
                                 {% endif %}
 
                                 <div class="card__info">
@@ -85,10 +81,25 @@
                                     {% endblock %}
                                     <hr>
 
+                                    <div class="card__share">
+                                        <h1 class="card__option-title">Compartelo</h1>
+                                        <div class="social-list">
+                                            <a href="" class="social-list__item social-list__item--facebook">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                            <a href="" class="social-list__item social-list__item--twitter">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
                                     <!-- Detail Add Item to Basket -->
-                                    {% block peker_product_basket_form %}
-                                        {% include "catalogue/partials/add_to_basket_form.html" %}
-                                    {% endblock %}
+                                    <div class="card__product-options">
+                                        {% block peker_product_basket_form %}
+                                            {% include "catalogue/partials/add_to_basket_form.html" %}
+                                        {% endblock %}
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -99,158 +110,6 @@
 	</div>
 {% endblock %}
 
-{% block content %}
-
-
-
-<article class="product_page"><!-- Start of product page -->
-
-    <div class="row-fluid">
-
-        {% block product_gallery %}
-        <div class="span6">
-            {% include "catalogue/partials/gallery.html" %}
-        </div>
-        {% endblock %}
-
-        {% block product_main %}
-        <div class="span6 product_main">
-            {% comment %}
-            This is a but clunky here.  Better to have some kind of JS-driven dashboard menu that 
-            pops out when clicked.  A bit like the Django-Debug-Toolbar button
-            {% endcomment %}
-            {% if user.is_authenticated and user.is_staff %}
-                <a class="pull-right hidden-phone" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
-            {% endif %}
-            <h1>{{ product.get_title }}</h1>
-
-            {% block product_stock_record %}
-                {% include "catalogue/partials/stock_record.html" with verbose=1 %}
-            {% endblock %}
-
-            {% iffeature "reviews" %}
-                {% include "catalogue/reviews/partials/review_stars.html" %}
-            {% endiffeature %}
-
-            <hr/>
-
-            {% block product_basket_form %}
-                {% include "catalogue/partials/add_to_basket_form.html" %}
-            {% endblock %}
-        </div><!-- /span6 -->
-        {% endblock %}
-
-    </div><!-- /row-fluid -->
-
-    {% block product_description %}
-        {% if product.description %}
-        <div id="product_description" class="sub-header">
-            <h2>{% trans "Product Description" %}</h2>
-        </div>
-        <p>{{ product.description|safe }}</p>
-        {% endif %}
-    {% endblock %}
-
-    {% block product_info %}
-    <div class="sub-header">
-        <h2>{% trans "Product Information" %}</h2>
-    </div>
-    <table class="table table-striped">
-        {% if product.upc %}
-        <tr>
-            <th>{% trans "UPC" %}</th><td>{{ product.upc }}</td>
-        </tr>
-        {% endif %}
-        <tr>
-            <th>{% trans "Product Type" %}</th><td>{{ product.get_product_class.name }}</td>
-        </tr>
-
-        {% purchase_info_for_product request product as session %}
-        {% if session.price.exists %}
-            <tr>
-                <th>{% trans "Price (excl. tax)" %}</th><td>{{ session.price.excl_tax|currency:session.price.currency }}</td>
-            </tr>
-            {% if session.price.is_tax_known %}
-                <tr>
-                    <th>{% trans "Price (incl. tax)" %}</th><td>{{ session.price.incl_tax|currency:session.price.currency }}</td>
-                </tr>
-                <tr>
-                    <th>{% trans "Tax" %}</th><td>{{ session.price.tax|currency:session.price.currency }}</td>
-                </tr>
-            {% endif %}
-            <tr>
-                <th>{% trans "Availability" %}</th>
-                <td>{{ session.availability.message }}</td>
-            </tr>
-        {% endif %}
-        {% for av in product.attribute_values.all %}
-            <tr>
-                <th>{{ av.attribute.name }}</th>
-                <td>{{ av.value_as_html }}</td>
-            </tr>
-        {% endfor %}
-        {% iffeature "reviews" %}
-            <tr>
-                <th>{% trans "Number of reviews" %}</th>
-                <td>{{ product.num_approved_reviews }}</td>
-            </tr>
-        {% endiffeature %}
-    </table>
-    {% endblock %}
-
-    {% iffeature "reviews" %}
-        {% block product_review %}
-        <section>
-            <div id="reviews" class="sub-header">
-                {% if product.num_approved_reviews > 3 %}
-                    <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}" class="btn pull-right">{% trans "See all reviews" %}</a>
-                {% endif %}
-                <h2>{% trans "Customer Reviews" %}</h2>
-            </div>
-
-            {% if product.num_approved_reviews == 0 %}
-                <p>
-                    {% if product|is_review_permitted:user %}
-                        {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
-                            {% blocktrans %}This product does not have any reviews yet -
-                            <a href="{{ add_review_url }}#addreview">be the first to write one</a>.
-                        {% endblocktrans %}
-                    {% else %}
-                        {% trans "This product does not have any reviews yet" %}.
-                    {% endif %}
-                </p>
-            {% else %}
-                <ol class="unstyled review-list">
-                    {% for review in reviews|slice:":3" %}
-                        <li>
-                        {% include 'catalogue/partials/review.html' %}
-                        </li>
-                    {% endfor %}
-                </ol>
-            {% endif %}
-        </section>
-        {% endblock product_review %}
-    {% endiffeature %}
-
-    {% with recommended_products=product.recommended_products.all|slice:":6" %}
-        {% if recommended_products %}
-            <div class="sub-header">
-                <h2>{% trans "Recommended items" %}</h2>
-            </div>
-            <ul class="row-fluid">
-                {% for product in recommended_products %}
-                <li class="span2 {% if forloop.counter0|divisibleby:"6" %}no-margin{% endif %}">
-                    {% render_product product %}
-                </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-
-    {% recently_viewed_products %}
-
-</article><!-- End of product page -->
-{% endblock content %}
 
 {% block extrascripts %}
     {{ block.super }}

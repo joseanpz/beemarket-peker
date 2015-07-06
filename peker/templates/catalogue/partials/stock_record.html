@@ -6,14 +6,14 @@
 
 {% if session.price.exists %}
     {% if session.price.excl_tax == 0 %}
-        <p class="card__price">{% trans "Free" %}</p>
+        <span class="card__price">{% trans "Free" %}</span>
     {% elif session.price.is_tax_known %}
-        <p class="card__price">{{ session.price.incl_tax|currency:session.price.currency }}</p>
+        <span class="card__price">{{ session.price.incl_tax|currency:session.price.currency }}</span>
     {% else %}
-        <p class="card__price">{{ session.price.excl_tax|currency:session.price.currency }}</p>
+        <span class="card__price">{{ session.price.excl_tax|currency:session.price.currency }}</span>
     {% endif %}
 {% else %}
-    <p class="card__price">&nbsp;</p>
+    <span class="card__price">&nbsp;</span>
 {% endif %}
 <p class="{{ session.availability.code }} availability">
     <i class="icon-{% if session.availability.is_available_to_buy %}ok{% else %}remove{% endif %}"></i>

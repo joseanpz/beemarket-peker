@@ -344,17 +344,75 @@ html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}artic
   color: #fff;
 }
 
-/*Facebook icon*/
+/**
+*
+* Task : Social icons fixeds in Detail view
+* Author : Noé Saáchez
+* Date: Monday, July 6 2015 
+*
+**/
 
-.card__share a {
-display: inline-block;
-font-size: 40px;
-margin-right: 16px;
+.social-list {
+	margin: 1em 0;
 }
-.card__share a.face {
-color: #305891;
+.social-list__item {
+	display: inline-block;
+	vertical-align: middle;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	color: white;
+	text-align: center;
+}
+.social-list__item:hover {
+	text-decoration: none;
+}
+.social-list__item--facebook{
+	background-color: #305891;
+}
+.social-list__item--twitter{
+	background-color: #25aae1;
 }
 
-.card__share a.twt {
-color: #25aae1;
+/**
+*
+* Task : Prevent show images during loading
+* Author : Noé Saáchez
+* Date: Monday, July 6 2015 
+*
+**/
+.royalSlider *{
+   -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+   	backface-visibility: hidden;
+}
+.royalSlider > .rsContent {
+	visibility: hidden
+}
+
+/**
+*
+* Task : Align forms in details
+* Author : Noé Saáchez
+* Date: Monday, July 6 2015 
+*
+**/
+.add-to-basket .form-group {
+	display: block;
+	float: right;
+	width: 49%;
+}
+
+/**
+*
+* Task : Align edit product in detail view
+* Author : Noé Saáchez
+* Date: Monday, July 6 2015 
+*
+**/
+.edit-from-detail {
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	text-decoration: underline;
+	margin: 1em;
 }
