@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load thumbnail %}
-{% load peker_currency_filters %}
+{% load currency_filters %}
 {% load purchase_info_tags %}
 
 {% if basket_warnings %}
@@ -23,14 +23,14 @@
 
 {% if not basket.is_empty %}
     {% block basket_form_headers %}
-        <div class="basket-title hidden-phone">
-            <div class="row-fluid">
-                <h2 class="span6 h3">{% trans "Items to buy now" %}</h2>
-                <p class="span3 h3">{% trans "Quantity" %}</p>
-                <p class="span1 h3 align-right">{% trans "Price" %}</p>
-                <p class="span2 h3 align-right">{% trans "Total" %}</p>
+        <section class="page-title clearfix">
+            <h1>Mi carrito</h1>
+            <div class="title-block cart-controls">
+              <a href="#" class="red-btn">vaciar carrito</a>
+              <a href="#" class="black-btn">actualizar carrito</a>
+              <a href="#" class="form__btn">pagar</a>
             </div>
-        </div>
+          </section>
     {% endblock %}
 
     {% block basket_form_main %}
