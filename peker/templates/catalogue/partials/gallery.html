@@ -6,7 +6,30 @@
     {# use length rather then count as the images get queried anyways #}
 
     {% if all_images|length > 1 %}
-
+        
+        <div id="product-gallery" class="royalSlider rsDefault">
+            {% for image in all_images %}
+                <div class="rsContent">
+                    <div class="gallery__img">
+                        {% thumbnail image.original "696x402" upscale=False as thumb %}
+                        <a href="#zoom" 
+                            class="zoom-trigger" 
+                            data-image="{{ thumb.url }}">
+                            <i class="fa fa-search-plus"></i>
+                        </a>
+                        <img src="{{ thumb.url }}" 
+                             class="img-responsive rsImg" 
+                             alt="{{ product.get_title }}"
+                             data-rsTmb="{{ thumb.url }}">
+                        {% endthumbnail %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    
+        {% comment %}
+            
+        
         <div id="product_gallery" class="carousel slide">
             <div class="thumbnail">
                 <div class="carousel-inner">
@@ -33,10 +56,11 @@
             <a class="carousel-control left" href="#product_gallery" data-slide="prev">&lsaquo;</a>
             <a class="carousel-control right" href="#product_gallery" data-slide="next">&rsaquo;</a>
         </div>
-
+        {% endcomment %}
     {% else %}
 
         {# Only one image to show #}
+        <h1>In else statment</h1>
         <div id="product_gallery" class="carousel">
             <div class="thumbnail">
                 <div class="carousel-inner">

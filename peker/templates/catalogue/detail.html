@@ -47,7 +47,61 @@
 {% block header %}
 {% endblock header %}
 
+
+{% block content_peker %}
+	<div class="card-section">
+		<div class="card-content">
+            <div class="container">
+                <div class="card-info-product">
+                    <h1 class="card__title">{{ product.get_title }}</h1>
+                    <div class="card__info-content">
+                        <div class="row clearfix">
+                            <!-- Detail Left -->
+                            {% block peker_product_gallery %}
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    {% include "catalogue/partials/gallery.html" %}
+                                </div>
+                            {% endblock %}
+                            
+                            <!-- Detail Right -->
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                {% if user.is_authenticated and user.is_staff %}
+                                    <a class="pull-right hidden-phone" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
+                                {% endif %}
+
+                                <div class="card__info">
+                                    {% block peker_product_stock_record %}
+                                        {% include "catalogue/partials/stock_record.html" with verbose=1 %}
+                                    {% endblock %}
+                                    <span class="card__price"></span>
+                                    <hr>
+
+                                    <!-- Detail Info -->
+                                    {% block peker_product_description %}
+                                        {% if product.description %}
+                                        
+                                        <p>{{ product.description|safe }}</p>
+                                        {% endif %}
+                                    {% endblock %}
+                                    <hr>
+
+                                    <!-- Detail Add Item to Basket -->
+                                    {% block peker_product_basket_form %}
+                                        {% include "catalogue/partials/add_to_basket_form.html" %}
+                                    {% endblock %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>		
+	</div>
+{% endblock %}
+
 {% block content %}
+
+
 
 <article class="product_page"><!-- Start of product page -->
 
