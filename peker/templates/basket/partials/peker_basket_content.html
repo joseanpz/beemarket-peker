@@ -11,9 +11,6 @@
       </section>
 
 
-
-
-
 {% if basket_warnings %}
     <h5>{% trans "Important messages about items in your basket" %}</h5>
     {% for warning in basket_warnings %}
@@ -56,7 +53,7 @@
                     {% purchase_info_for_line request line as session %}
                     <div class="basket-items">
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-2 col-xs-4">
                                 {{ form.id }}
 
                                 {% with image=product.primary_image %}
@@ -67,13 +64,14 @@
                                     {% endthumbnail %}
                                 {% endwith %}
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 col-xs-8">
                                 <h3 class="product-title"><a href="{{ product.get_absolute_url }}">{{ line.description }}</a></h3>
                                 <p class="availability {{ session.availability.code }}">{{ session.availability.message }}</p>
                             </div>
-                            <div class="col-sm-3">
+                            
+                            <div class="col-sm-3 col-xs-12">
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-8 col-xs-6">
                                         <div class="checkout-quantity">
                                             <div class="input-group  {% if form.errors %}error{% endif %}">
                                                 {% render_field form.quantity class+="form-control" %}
@@ -84,8 +82,9 @@
                                             </span>
                                             </div>
                                         </div>
+
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 col-xs-6">
                                         <a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="btn btn-default">
                                             <i class="fa fa-trash-o"></i>
                                         </a>
@@ -99,7 +98,8 @@
                                     
 
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-2 col-xs-6">
+                                <hr class="visible-xs">
                                 <p class="price_color align-right">
                                     {% if line.is_tax_known %}
                                         {{ line.unit_price_incl_tax|currency:line.price_currency }}
@@ -108,7 +108,8 @@
                                     {% endif %}
                                 </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-2 col-xs-6">
+                                <hr class="visible-xs">
                                 <p class="price_color align-right">
                                     {% if line.is_tax_known %}
                                         {{ line.line_price_incl_tax|currency:line.price_currency }}

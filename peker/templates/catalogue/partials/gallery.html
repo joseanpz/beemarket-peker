@@ -60,19 +60,12 @@
     {% else %}
 
         {# Only one image to show #}
-        <h1>In else statment</h1>
-        <div id="product_gallery" class="carousel">
-            <div class="thumbnail">
-                <div class="carousel-inner">
-                    <div class="item active">
-                    {% with image=product.primary_image %}
-                        {% thumbnail image.original "440x400" upscale=False as thumb %}
-                            <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
-                        {% endthumbnail %}
-                    {% endwith %}
-                    </div>
-                </div>
-            </div>
+        <div class="product-single-image">
+            {% with image=product.primary_image %}
+                {% thumbnail image.original "440x400" upscale=False as thumb %}
+                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="img-thumbnail img-responsive" />
+                {% endthumbnail %}
+            {% endwith %}
         </div>
 
     {% endif %}

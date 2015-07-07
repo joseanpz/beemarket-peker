@@ -399,7 +399,7 @@ html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}artic
 .add-to-basket .form-group {
 	display: block;
 	float: right;
-	width: 49%;
+	width: 50%;
 }
 
 /**
@@ -424,6 +424,9 @@ html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}artic
 * Date: Monday, July 7 2015 
 *
 **/
+.basket-title {
+	border-top: 1px solid #ddd;
+}
 .basket-title .h3 {
 	font-size: 11px;
 	text-transform: uppercase;
