@@ -131,33 +131,13 @@
         </form>
     {% endblock %}
 
-    <div class="row">
-        {% comment %}{% block vouchers %}
-            {# Hide the entire section if a custom BasketView doesn't pass in a voucher form #}
-            {% if voucher_form %}
-                <div class="col-sm-6">
-                    <div class="sub-header">
-                        <h2>{% trans "Voucher/promo code" %}</h2>
-                    </div>
-                    <p id="voucher_form_link"><a href="#voucher" class="btn btn-default btn-full">{% trans "I have a voucher code..." %}</a></p>
-
-                    <div id="voucher_form_container" style="display:none">
-                        <form id="voucher_form" action="{% url 'basket:vouchers-add' %}" method="post">
-                            {% csrf_token %}
-                            {% include "partials/form_fields.html" with form=voucher_form %}
-                            <button type="submit" class="btn btn-info" data-loading-text="{% trans 'Adding...' %}">{% trans "Add voucher" %}</button>
-                            {% trans "or" %} <a href="#" id="voucher_form_cancel">{% trans "cancel" %}</a>
-                        </form>
-                    </div>
-                </div>
-            {% endif %}
-        {% endblock vouchers %}{% endcomment %}
+    <div class="row clearfix">
+        <div class="col-sm-12">
+            <a href="{% url 'catalogue:index'%}" class="form__btn">Continuar comprando</a>
+        </div>
 
         {% block baskettotals %}
-            <div class="col-sm-6">
-                <div class="sub-header">
-                    <h2>{% trans "Totals" %}</h2>
-                </div>
+            <div class="col-sm-4 col-md-offset-8">
                 {% include 'basket/partials/peker_basket_totals.html' with editable=1 %}
             </div>
         {% endblock baskettotals %}
@@ -168,7 +148,7 @@
         <div class="form-group clearfix">
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-8">
-                    <a href="{% url 'checkout:index' %}" class="btn btn-lg btn-primary btn-block">{% trans "Proceed to checkout" %}</a>
+                    <a href="{% url 'checkout:index' %}" class="form__btn pull-right">{% trans "Proceed to checkout" %}</a>
                 </div>
             </div>
         </div>

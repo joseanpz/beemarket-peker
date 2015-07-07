@@ -13,33 +13,8 @@
 {% endblock %}
 
 
-
-{% comment %}{% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-            <span class="divider">/</span>
-        </li>
-        <li class="active">{% trans "Basket" %}</li>
-    </ul>
-{% endblock %}{% endcomment %}
-
 {# Hide mini-basket so we don't have two baskets to keep in sync #}
 {% block mini_basket %}{% endblock %}
-
-{% comment %}{% block headertext %}
-    {% trans "Basket" %}
-{% endblock %}{% endcomment %}
-
-{% comment %}
-{% block content %}
-    {# Use a partial template so that AJAX can be used to re-render basket #}
-    {% include 'basket/partials/basket_content.html' %}
-{% endblock content %}
-    
-{% endcomment %}
-
-
 
 {% block onbodyload %}
     {{ block.super }}

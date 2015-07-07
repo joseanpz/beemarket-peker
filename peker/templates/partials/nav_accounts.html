@@ -77,7 +77,9 @@
           <a href="#" class="cart__top-btn nav__item" id="cart-header-btn">
             <i class="fa fa-shopping-cart"></i>
             <span class="cart__label">Carrito</span>
-            <span class="quantity">0</span>
+            <span class="quantity">
+              {{ request.basket.num_lines }}
+            </span>
           </a>
           <a href="contacto.html" class="nav__item">Contacto</a>
           {% if user.is_authenticated %}
@@ -85,45 +87,6 @@
           {% endif %}
         </div>
         <!-- Cart View -->
-        <div class="cart-preview-section isNotShow" id="cart-header">
-          <div class="cart-header-wrapper">
-            <div class="preview__list">
-              <div class="preview__items">
-                <div class="preview__item first">
-                  <div class="row clearfix">
-                    <div class="col-xs-3">
-                      <div class="preview-item__img">
-                        <a href="#" class="card-trigger">
-                          <img src="http://placehold.it/500x500" alt="" class="img-responsive">
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-xs-6">
-                      <div class="preview-item__desc">
-                        <a href="#" class="card-trigger">
-                          <h1>Nombre del producto</h1>
-                        </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam consequuntur obcaecati.</p>
-                      </div>
-                    </div>
-                    <div class="col-xs-3">
-                      <div class="preview-item__price">
-                        <span>$829.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="preview__total clearfix">
-                <span class="preview-total__title left">Total:</span>
-                <span class="preview-total__price right">$1,247.00</span>
-              </div>
-            </div>
-          </div>
-          <div class="preview__btns clearfix">
-            <a href="carrito.html" class="preview-btns__btn tocart left">Ver Carrito</a>
-            <a href="login-checkout.html" class="preview-btns__btn tocheck right">Checkout</a>
-          </div>
-        </div>
+        {% include 'basket/partials/peker_mini_basket_content.html'%}
         <!-- end Cart View -->
       </section>
