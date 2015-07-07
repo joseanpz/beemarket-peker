@@ -11,6 +11,12 @@
       </section>
 
 
+<div class="container">
+            {% include "partials/alert_messages.html" %}
+</div>
+
+
+
 {% if basket_warnings %}
     <h5>{% trans "Important messages about items in your basket" %}</h5>
     {% for warning in basket_warnings %}
@@ -126,7 +132,7 @@
     {% endblock %}
 
     <div class="row">
-        {% block vouchers %}
+        {% comment %}{% block vouchers %}
             {# Hide the entire section if a custom BasketView doesn't pass in a voucher form #}
             {% if voucher_form %}
                 <div class="col-sm-6">
@@ -145,14 +151,14 @@
                     </div>
                 </div>
             {% endif %}
-        {% endblock vouchers %}
+        {% endblock vouchers %}{% endcomment %}
 
         {% block baskettotals %}
             <div class="col-sm-6">
                 <div class="sub-header">
                     <h2>{% trans "Totals" %}</h2>
                 </div>
-                {% include 'basket/partials/basket_totals.html' with editable=1 %}
+                {% include 'basket/partials/peker_basket_totals.html' with editable=1 %}
             </div>
         {% endblock baskettotals %}
     </div>
