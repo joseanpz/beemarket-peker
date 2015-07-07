@@ -6,6 +6,8 @@ db.*
 
 media/
 
+olds/
+
 
 ### OSX ###
 .DS_Store

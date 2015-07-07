@@ -5,9 +5,6 @@
 <!--[if IE 7]>         <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js"> <!--<![endif]-->
-
-
-
     <head>
         <title>{% if display_version %}[{% trans "Build" %} {{ version }}] {% endif %}{% block title %}{{ shop_name }} - {{ shop_tagline }}{% endblock %}</title>
 
@@ -46,9 +43,7 @@
         {% endblock %}
 
         {# Additional CSS - specific to certain pages #}
-        {% block extrastyles %}
-            <link rel="stylesheet" href="styles/vendor.css-->
-        {% endblock %}
+        {% block extrastyles %}{% endblock %}
 
         {% block extrahead %}{% endblock %}
     </head>
