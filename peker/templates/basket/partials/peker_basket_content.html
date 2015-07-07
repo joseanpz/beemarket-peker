@@ -66,18 +66,21 @@
                                             <div class="input-group  {% if form.errors %}error{% endif %}">
                                                 {% render_field form.quantity class+="form-control" %}
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="submit" data-loading-text="...">
+                                                <button class="btn btn-default" type="submit" data-loading-text="">
                                                     <i class="fa fa-refresh"></i>
                                                 </button>
                                             </span>
                                             </div>
                                         </div>
-                                        
                                     </div>
                                     <div class="col-sm-4">
                                         <a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="btn btn-default">
                                             <i class="fa fa-trash-o"></i>
                                         </a>
+                                        <div style="display:none">
+                                            {{ form.save_for_later }}
+                                            {{ form.DELETE }}
+                                        </div>
                                     </div>
                                 </div>
                                 
