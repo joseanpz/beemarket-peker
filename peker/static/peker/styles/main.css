@@ -416,3 +416,33 @@ html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}artic
 	text-decoration: underline;
 	margin: 1em;
 }
+
+/**
+*
+* Task : Style headlines in cart view
+* Author : Noé Saáchez
+* Date: Monday, July 7 2015 
+*
+**/
+.basket-title .h3 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	color: #80774e;
+}
+
+.product-title {
+	font-size: 14px;
+	margin: 0.5em 0;
+}
+.product-title a {
+	color : #222;
+}
+
+
+.basket-items {
+	height: auto;
+	overflow: hidden;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #ddd;
+}

@@ -7,6 +7,7 @@
 {% endblock %}
 
 
+    
 {% block content_peker %}
     <section class="return-control">
         <div class="container">
@@ -18,9 +19,8 @@
             {% include 'basket/partials/peker_basket_content.html' %}
         </div>
     </section>
-    
-       
 {% endblock %}
+
 
 
 {% block breadcrumbs %}
@@ -40,10 +40,15 @@
     {% trans "Basket" %}
 {% endblock %}
 
+{% comment %}
 {% block content %}
     {# Use a partial template so that AJAX can be used to re-render basket #}
     {% include 'basket/partials/basket_content.html' %}
 {% endblock content %}
+    
+{% endcomment %}
+
+
 
 {% block onbodyload %}
     {{ block.super }}
