@@ -8,8 +8,8 @@ class BasketAddView(CoreBasketAddView):
 
     def get_success_url(self):
         post_url = self.request.POST.get('next')
-        print post_url
+
         if post_url and is_safe_url(post_url, self.request.get_host()):
             return post_url
-        print 'entes de safe referer'
+
         return reverse('basket:summary')
