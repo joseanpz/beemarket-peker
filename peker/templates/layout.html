@@ -31,8 +31,11 @@
     </header>
 
     <main>
-    {% include "partials/alert_messages.html" %}
-    {% block content_peker %}eco
+        <div class="container">
+            {% include "partials/alert_messages.html" %}
+        </div>
+    
+    {% block content_peker %}
 
     {% endblock %}</main>
 
