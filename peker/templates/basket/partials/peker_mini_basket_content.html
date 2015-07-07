@@ -1,0 +1,75 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load peker_currency_filters %}
+{% load purchase_info_tags %}
+{% load widget_tweaks %}
+
+
+
+<div class="cart-preview-section isNotShow" id="cart-header">
+    <div class="cart-header-wrapper">
+        <div class="preview__list">
+            <div class="preview__items">
+                {% for line in request.basket.all_lines  %}
+                    <div class="preview__item">
+                        <div class="row clearfix">
+                            <!-- Image of product Mini Cart -->
+                            <div class="col-sm-3 col-xs-12">
+                                {% with image=line.product.primary_image %}
+                                    <div class="preview-item__img">
+                                        {% thumbnail image.original "100x100" upscale=False as thumb %}
+                                        <a href="{{ line.product.get_absolute_url }}">
+                                            <img src="{{ thumb.url }}" alt="" class="img-thumbnail img-responsive">
+                                        </a>
+                                        {% endthumbnail %}
+                                    </div>
+                                {% endwith %}
+                            </div>
+
+                            <!-- Product Name Mini Cart -->
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="preview-item__desc">
+                                    <a href="{{ line.product.get_absolute_url }}">
+                                        <h1>{{ line.description }} <span>( {{line.quantity}} )</span></h1>
+
+                                    </a>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="preview-item__price">
+                                    <span>
+                                        {% if line.is_tax_known %}
+                                            {{ line.line_price_incl_tax|currency:line.price_currency }}
+                                        {% else %}
+                                            {{ line.line_price_excl_tax|currency:line.price_currency }}
+                                        {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="preview__total clearfix">
+              <span class="preview-total__title left">Total:</span>
+              <span class="preview-total__price right">
+                  {% if request.basket.is_tax_known %}
+                      {{ request.basket.total_incl_tax|currency:request.basket.currency }}
+                  {% else %}
+                      {{ request.basket.total_excl_tax|currency:request.basket.currency }}
+                  {% endif %}
+              </span>
+            </div>
+        </div>
+
+
+
+        <div class="preview__btns clearfix">
+          <a href="{% url 'basket:summary' %}" class="btn btn-default btn-sm pull-left">Ver Carrito</a>
+          <a href="{% url 'checkout:index' %}" class="preview-btns__btn tocheck right">Checkout</a>
+        </div>
+    </div>
+</div> 
+
