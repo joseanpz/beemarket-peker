@@ -4,6 +4,16 @@
 {% load purchase_info_tags %}
 {% load widget_tweaks %}
 
+    <section class="return-control">
+        <div class="container">
+          <a href="#" class="return-ctrl">Regresar</a>
+        </div>
+      </section>
+
+
+
+
+
 {% if basket_warnings %}
     <h5>{% trans "Important messages about items in your basket" %}</h5>
     {% for warning in basket_warnings %}
@@ -22,6 +32,8 @@
     </div>
 {% endif %}
 
+<section class="cart-section">
+  <div class="container">
 {% if not basket.is_empty %}
     {% block basket_form_headers %}
         <div class="basket-title hidden-xs">
@@ -221,3 +233,5 @@
         </div>
     {% endif %}
 {% endblock %}
+</div>
+</section>
