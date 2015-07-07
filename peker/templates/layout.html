@@ -35,9 +35,8 @@
             {% include "partials/alert_messages.html" %}
         </div>
     
-    {% block content_peker %}
-
-    {% endblock %}</main>
+        <div id="content_inner">{% block content_peker %}{% endblock %}</div>
+    </main>
 
     {# Main content of page - other layout templates may override this block #}
     {% block content_wrapper %}
@@ -63,7 +62,7 @@
                     </div>
 
                     {# Div exists for AJAX updates to entire content section #}
-                    <div id="content_inner">{% block content %}{% endblock %}</div>
+                    <div id="content_inner_">{% block content %}{% endblock %}</div>
                 </div>
             </div>
         </div>
