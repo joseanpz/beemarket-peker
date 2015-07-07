@@ -128,7 +128,7 @@
     {% endblock %}
 
     <div class="row">
-        {% block vouchers %}
+        {% comment %}{% block vouchers %}
             {# Hide the entire section if a custom BasketView doesn't pass in a voucher form #}
             {% if voucher_form %}
                 <div class="col-sm-6">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
             {% endif %}
-        {% endblock vouchers %}
+        {% endblock vouchers %}{% endcomment %}
 
         {% block baskettotals %}
             <div class="col-sm-6">
