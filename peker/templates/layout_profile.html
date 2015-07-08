@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load promotion_tags %}
+
+{% block content_peker %}
+	<div class="container">
+		<div class="row">
+			<aside class="sidebar profile-sidebar col-sm-4 col-md-4">
+			    {% block column_left %}{% endblock %}
+			</aside>
+			<div class="col-sm-8 col-md-8 profile-content">
+				{% include "partials/alert_messages.html" %}
+				{% block header %}
+				<div class="profile-header">
+				    <h1>{% block headertext %}{% endblock %}</h1>
+				</div>
+				{% endblock %}
+
+				
+				<div id="promotions">
+				    {% for promotion in promotions_page %}
+				        {% render_promotion promotion %}
+				    {% endfor %}
+				</div>
+
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content_wrapper %}
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "layout_profile.html" %}
+
+{% load i18n %}
+
+{% block title %}
+    {{ page_title }} | {% trans 'Account' %} | {{ block.super }}
+{% endblock %}
+
+{% block body_class %}account-profile{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'customer:summary' %}">{% trans 'Account' %}</a>
+        </li>
+        {% block extra_breadcrumbs %}{% endblock %}
+        <li class="active">{{ page_title }}</li>
+    </ul>
+{% endblock %}
+
+{% block headertext %}{{ page_title }}{% endblock %}
+
+{% block column_left %}
+    <ul class="nav nav-pills nav-stacked" id="profile-nav">
+        {% block standard_tabs %}
+            <li  class="profile-item {% if active_tab == 'profile' %} active{% endif %}">
+                <a href="{% url 'customer:profile-view' %}">
+                    <span class="profile-item-icon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <span class="profile-item-label">{% trans "Profile" %}</span>
+                </a>
+            </li>
+            <li class="profile-item {% if active_tab == 'orders' %}  active{% endif %}">
+                <a href="{% url 'customer:order-list' %}">
+                    <span class="profile-item-icon">
+                        <i class="fa fa-cart-arrow-down"></i>
+                    </span>
+                    <span class="profile-item-label">{% trans "Order History" %}</span>
+                </a>
+            </li>
+            <li class="profile-item {% if active_tab == 'addresses' %}  active{% endif %}">
+                <a href="{% url 'customer:address-list' %}">
+                    <span class="profile-item-icon">
+                        <i class="fa fa-location-arrow"></i>
+                    </span>
+                    <span class="profile-item-label">{% trans "Address Book" %}</span>
+                </a>
+            </li>
+            <li class="profile-item{% if active_tab == 'emails' %}  active{% endif %}">
+                <a href="{% url 'customer:email-list' %}">
+                    <span class="profile-item-icon"><i class="fa fa-envelope-o"></i></span>
+                    <span class="profile-item-label">{% trans "Email History" %}</span>
+                </a>
+            </li>
+          
+        {% endblock %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+    {% block tabcontent %}{% endblock tabcontent %}
+{% endblock content %}

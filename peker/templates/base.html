@@ -64,7 +64,7 @@
         {% block cdn_scripts %}
             <!-- jQuery -->
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-            <script>window.jQuery || document.write('<script src="{% static "oscar/js/jquery/jquery-1.9.1.min.js" %}"><\/script>')</script>
+            <script>window.jQuery || document.write('<script src="{% static "oscar/js/jquery/jquery-1.9.1.min.js" %}"><\/script>')</script>          
         {% endblock %}
 
         {# Local scripts #}
@@ -72,6 +72,7 @@
             {% compress js %}
             <!-- Twitter Bootstrap -->
             <script type="text/javascript" src="{% static "peker/scripts/vendor/bootstrap.min.js" %}"></script>
+            
             <!-- Oscar -->
             <script src="{% static "oscar/js/oscar/ui.js" %}" type="text/javascript" charset="utf-8"></script>
             {% endcompress %}
@@ -83,7 +84,6 @@
         {# Block for body onload functions #}
         <script type="text/javascript">
             $(function() {
-                oscar.init();
                 {% block onbodyload %}{% endblock %}
             });
         </script>

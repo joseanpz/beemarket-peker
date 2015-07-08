@@ -2,12 +2,7 @@
 {% load compress %}
 
 {% compress js %}
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{% static "peker/scripts/vendor/jquery-1.11.1.min.js" %}"><\/script>')</script><![endif]-->
-    <!--[if gt IE 8]><!-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{% static "peker/scripts/vendor/jquery-2.1.1.min.js"%}"><\/script>')</script><!--<![endif]-->
+
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
     <script src="{% static "peker/scripts/pluginslive.js" %}"></script>
     <script src="{% static "peker/scripts/range.js" %}"></script>
@@ -15,62 +10,5 @@
     <script src="{% static "peker/scripts/track.js" %}"></script>
     <script src="{% static "peker/scripts/mainlive.js" %}"></script>
     <script src="{% static "peker/scripts/vendor/bootstrap-slider.js" %}"></script>
-    <script type="text/javascript">
-    //Sidebar
-    $("#precio").slider({});
 
-
-    var normalize = (function () {
-        var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç",
-        to       = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
-        mapping  = {};
-
-        for (var i = 0, j = from.length; i < j; i++)
-            mapping[ from.charAt(i) ] = to.charAt(i);
-
-        return function (str) {
-            var ret = [];
-            for (var i = 0, j = str.length; i < j; i++) {
-                var c = str.charAt(i);
-                if (mapping.hasOwnProperty(str.charAt(i)))
-                    ret.push(mapping[ c ]);
-                else
-                    ret.push(c);
-            }
-            return ret.join('').replace(/[^-A-Za-z0-9]+/g, '-');
-        }
-    })();
-
-    $("#search_box").submit(function () {
-
-        var producto    =   $('#producto').val();
-        var precio      =   $('#precio').val();
-        var orden       =   $("input[name='orden']:checked").val();
-        var clave       =   $('#clave').val();
-
-        if (precio == "" && producto != ""){
-
-            var url = "http://beemarket.mx/peker/producto/" + normalize(producto) + "/" + normalize(orden);
-
-        }else if (precio != "" && producto == ""){
-
-            var url = "http://beemarket.mx/peker/precio/" + normalize(precio) + "/" + normalize(orden);
-
-        }else if (precio != "" && producto != ""){
-
-            var url = "http://beemarket.mx/peker/busqueda/" + normalize(producto) + "/" + normalize(precio) + "/" + normalize(orden);
-
-        }else if (precio == "" && producto == ""){
-
-            var url = "http://beemarket.mx/peker/catalogo/" + normalize(orden);
-        }
-
-        $(location).attr('href', url);
-        return false;
-    });
-
-    $("#search_btn").on('click', function (){
-        $(location).attr('href', url);
-    });
-</script>
 {% endcompress %}

@@ -24,29 +24,7 @@ main content area to split it into a sidebar and a content block
 
                         <div class="filter-control">
                             {% block side_categories %}{% endblock %}
-                            {% comment %}<h1 class="filter__title">Categorías</h1>
 
-                            <p><a href="http://beemarket.mx/peker/categoria/2/recamaras">
-                                <strong>Recámaras</strong>
-                            </a></p>
-
-                            <p>&nbsp;&nbsp;&nbsp;<a href="http://beemarket.mx/peker/filtro/7/portapantallas">Portapantallas</a>
-                            </p>
-
-                            <p>&nbsp;&nbsp;&nbsp;<a href="http://beemarket.mx/peker/filtro/8/cajoneras">Cajoneras</a>
-                            </p>
-
-                            <p>&nbsp;&nbsp;&nbsp;<a href="http://beemarket.mx/peker/filtro/9/zapatera">Zapatera</a></p>
-
-                            <p><a href="http://beemarket.mx/peker/categoria/4/comedores">
-                                <strong>Comedores</strong>
-                            </a></p>
-
-                            <p>&nbsp;&nbsp;&nbsp;<a href="http://beemarket.mx/peker/filtro/6/bufetero">Bufetero</a></p>
-
-                            <p><a href="http://beemarket.mx/peker/categoria/5/antecomedores">
-                                <strong>Antecomedores</strong>
-                            </a></p>{% endcomment %}
                         </div>
                         <!--end Filter Control-->
                     </div>
@@ -55,61 +33,7 @@ main content area to split it into a sidebar and a content block
 
                         <div class="filter-control">
                             {% block side_filters %}{% endblock %}
-                            {% comment %}<h1 class="filter__title">Filtros</h1>
-
-                            <form method="get" id="search_box" action="">
-                                <!--<p class="tl-orange tl-filter">Clave del producto</p>
-                                    <input type="text" id="clave" name="clave"  class="form-control" placeholder="Clave del producto">-->
-
-                                <p>Nombre del producto</p>
-
-                                <p><input type="text" id="producto" name="producto" maxlength="50" class="form-control"
-                                          value="" placeholder="Producto"></p>
-
-                                <p>Rango de precio</p>
-
-                                <p>
-                                    <span>$0.00</span> <span class="right">$23,233.00</span>
-
-                                <div class="slider slider-horizontal">
-                                    <div class="slider-track">
-                                        <div class="slider-selection" style="left: 0%; width: 8.7141750580945%;"></div>
-                                        <div class="slider-handle round" tabindex="0" style="left: 0%;"></div>
-                                        <div class="slider-handle round" tabindex="0"
-                                             style="left: 8.7141750580945%;"></div>
-                                    </div>
-                                    <div id="tooltip" class="tooltip top"
-                                         style="top: -30px; left: -43.8251355538342px;">
-                                        <div class="tooltip-arrow"></div>
-                                        <div class="tooltip-inner">$0.00 : $2,025.00</div>
-                                    </div>
-                                    <div id="tooltip_min" class="tooltip top" style="top: -30px; left: -23px;">
-                                        <div class="tooltip-arrow"></div>
-                                        <div class="tooltip-inner">$0.00</div>
-                                    </div>
-                                    <div id="tooltip_max" class="tooltip bottom"
-                                         style="top: 18px; left: -13.1502711076685px;">
-                                        <div class="tooltip-arrow"></div>
-                                        <div class="tooltip-inner">$2,025.00</div>
-                                    </div>
-                                    <input id="precio" name="precio" class="form-control" type="text"
-                                           data-slider-min="0" data-slider-max="23238" data-slider-step="5"
-                                           data-slider-value="[0,2025]" style="display: none;"></div>
-                                </p>
-                                <p class="tl-orange tl-filter">Orden de precio</p>
-
-                                <p>
-                                    <input type="radio" name="orden" id="orden" value="asc"> Ascendente <br>
-                                    <input type="radio" name="orden" id="orden" value="desc" checked=""> Descendente
-                                    <br>
-                                </p>
-
-
-                                <div class="side__btn text-centered">
-                                    <button class="form__btn" id="search_btn" type="submit">Buscar
-                                    </button>
-                                </div>
-                            </form>{% endcomment %}
+                            
                         </div>
                     </div>
                     <!-- end bee sidebar -->
@@ -120,47 +44,7 @@ main content area to split it into a sidebar and a content block
 
                         <div class="row clearfix">
                             {% block items%} {% endblock %}
-                            {% comment %}<div class="col-sm-6 col-xs-12">
-                                <div class="product__item new-product added-product">
-
-                                    <div class="added-tag">
-                                        <h1>Agregado</h1>
-                                    </div>
-
-
-                                    <div class="item__img">
-                                        <a href="http://beemarket.mx/peker/detalle/6/duque">
-                                            <img src="http://beemarket.mx/peker/admin/img/productos/B.12.jpg" alt=""
-                                                 class="img-responsive">
-                                        </a>
-
-                                        <div class="item__overlay clearfix">
-                                            <div class="overlay__btn details">
-                                                <a href="http://beemarket.mx/peker/detalle/6/duque">Detalles</a>
-                                            </div>
-                                            <div class="overlay__btn cart">
-                                                <a href="http://beemarket.mx/peker/detalle/6/duque">
-                                                    <span>Añadir</span>
-                                                    <i class="fa fa-cart-plus"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item__info">
-                                        <div class="info__product clearfix">
-                                            <div class="product__name">
-                                                <span>Duque</span>
-                                            </div>
-                                            <div class="product__price">
-                                                <span>$2,000.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="info__category">
-                                            <span>Comedores</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>{% endcomment %}
+                            
                         </div>
                     </div>
                 </div>
@@ -174,9 +58,9 @@ main content area to split it into a sidebar and a content block
 <div class="container-fluid page">
     <div class="page_inner">
         {% block breadcrumbs %}{% endblock %}
-        <div class="row-fluid">
+        <div class="row">
 
-            <aside class="sidebar span3">
+            <aside class="sidebar col-sm-4 col-md-3">
                 {# Render promotions at the top of the left-hand sidebar #}
                 <div id="promotions_left">
                     {% for promotion in promotions_left %}
@@ -186,7 +70,7 @@ main content area to split it into a sidebar and a content block
                 {% block column_left %}{% endblock %}
             </aside>
 
-            <div class="span9">
+            <div class="col-sm-8 col-md-9">
                 {% block header %}
                 <div class="page-header action">
                     <h1>{% block headertext %}{% endblock %}</h1>
@@ -204,7 +88,7 @@ main content area to split it into a sidebar and a content block
                 {% block content %}{% endblock %}
             </div>
 
-        </div><!-- /row-fluid -->
+        </div><!-- /row -->
     </div><!-- /page_inner -->
 </div><!-- /container-fluid -->
 {% endblock %}

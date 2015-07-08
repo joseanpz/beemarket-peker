@@ -449,3 +449,160 @@ html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}artic
 	margin-bottom: 1em;
 	border-bottom: 1px solid #ddd;
 }
+
+/**
+*
+* Task : Style Profile
+* Author : Noé Saáchez
+* Date: Monday, July 8 2015 
+*
+**/
+
+.profile-sidebar,
+.profile-content {
+	border: 1px solid #ddd;
+	background: #F5F5F5;
+	margin-top: 2em;
+}
+.profile-content a {
+	color : #80774e;
+	text-decoration: underline;
+}
+.profile-sidebar {
+	border-right: 0;
+}
+#profile-nav {
+	border: 1px solid #ddd;
+	background: #FFF;
+	margin: 1em 0;
+}
+
+#profile-nav > li.active > a {
+	color: white;
+	background-color: #80774e;
+}
+
+#profile-nav > li {
+	border-bottom: 1px solid #ddd;
+}
+#profile-nav > li:last-child {
+	border-bottom: 0;
+}
+#profile-nav > li + li {
+	margin-top: 0;
+}
+#profile-nav > li > a {
+	padding: 0;
+	border-radius: 0;
+	color : #222;
+}
+
+.profile-item  .profile-item-label {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+}
+.profile-item  .profile-item-icon {
+	display: inline-block;
+	line-height: 32px;
+	width: 32px;
+	text-align: center;
+	height: 32px;
+	border-right: 1px solid #ddd;
+}
+.profile-item.active  .profile-item-icon {
+	border-right-color: #696240;
+}
+
+.profile-header {
+	margin-top: 1em;
+	background: #FFF;
+	padding: 1em;
+	border: 1px solid #DDD;
+}
+
+.profile-header h1 {
+	margin: 0;
+	text-transform: uppercase;
+	font-size: 12px;
+	letter-spacing: 2px;
+}
+
+.alert {
+	margin-top: 1em;
+}
+.btn-primary,
+.btn-danger {
+	padding: 1em 2em;
+	border-radius: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	border: 0;
+	transition: all 250ms ease-in-out;
+}
+
+.btn-peker-primary {
+	color: #FFF;
+	background-color: #80774e;
+}
+.btn-peker-primary:hover,
+.btn-peker-primary:active {
+	background-color: #635A2D;
+}
+
+.btn-peker-default {
+	padding: 1em 2em;
+	border-radius: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	border: 0;
+	transition: all 250ms ease-in-out;
+	color: #DDD;
+	background-color: #222;
+}
+.btn-peker-default:hover,
+.btn-peker-default:active {
+	color: #DDD;
+	background-color: #333;
+}
+
+.profile-order-filter,
+.profile-orders,
+.profile-edit,
+.profile-order-detail,
+.profile-init,
+.profile-delete,
+.profile-change-password {
+	padding: 1em;
+	border: 1px solid #ddd;
+	border-top: 0;
+	background-color: #fff;
+	margin-bottom: 1em;
+}
+
+.profile-orders  {
+	margin-bottom: 1em;
+}
+.profile-orders-results {
+	margin-top: 1em;
+}
+.profile-order-detail h2,
+.profile-order-filter 
+.profile-order-filter-title,
+.profile-orders 
+.profile-orders-title
+ {
+	margin: 0;
+	text-transform: uppercase;
+	font-size: 12px;
+	letter-spacing: 2px;
+	color: #80774e;
+}
+.profile-order-detail h2 {
+	padding: 1em 0;
+}
+.profile-orders-table {
+	margin-top: 1em;
+}
