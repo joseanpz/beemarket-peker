@@ -70,7 +70,7 @@
         </div>
         <div class="top__nav clearfix">
           {% if user.is_authenticated %}
-          <a href="{% url 'customer:login' %}" class="nav__item login-link"> Bienvenido(a) {{ user }}</a>
+          <a href="{% url 'customer:login' %}" class="nav__item login-link"> Bienvenido(a) {% if user.first_name %}{{ user.first_name }}{% else %} {{ user.email }}{% endif %}</a>
           {% else %}
           <a href="{% url 'customer:login' %}" class="nav__item login-link">Acceso</a>
           {% endif %}

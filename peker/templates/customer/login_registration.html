@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Login or register' %} | {{ block.super }}
+{% endblock %}
+
+
+{% block content_peker %}
+<!-- Return Control -->
+  <section class="return-control">
+    <div class="container">
+      <a href="#" class="return-ctrl">Regresar</a>
+    </div>
+  </section>
+<!-- end Return Control -->
+<!-- LogIn Section -->
+<section class="login-section">
+    <div class="container">
+      <!-- Page Title -->
+      <section class="page-title">
+                        <h1>Iniciar Sesión</h1>
+      </section>
+      <!-- end Page Title -->
+      <!-- Login Columns -->
+      <section class="login-columns-section">
+        <div class="row clearfix">
+          <div class="col-sm-6 col-xs-12">
+            <div class="login__form column-item">
+              <h1 class="form__title">Usuarios registrados</h1>
+              <span class="form__intro">Si ya estas registrado con nosotros puedes iniciar sesión aquí.</span>
+                <form id="login-form" action="{{ request.get_full_path }}" method="post" class="" >
+
+                {% csrf_token %}
+                {% include "partials/form_fields.html" with form=login_form %}
+                <a href="{% url 'password-reset' %}" class="form__forgot">{% trans "I've forgotten my password" %}</a>
+                <div class="form__action clearfix">
+                    <button name="login_submit" type="submit" class="form__btn right" value="Log In"  data-loading-text="{% trans "Logging in..." %}">Enviar</button>
+                </div>
+            </form>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xs-12 divisor">
+            <div class="register__form column-item">
+              <h1 class="form__title">Nuevos usuarios</h1>
+              <span class="form__intro">Si aun no estas registrado No esperes más, el registro es fácil, rápido y gratuito, y con ello podrás realizar tus compras de manera más sencilla, tendrás la posibilidad de guardar tus listas de deseos, dar seguimiento a tus pedidos y muchas ventajas mas.</span>
+                <form id="register-form" action="{{ request.get_full_path }}" method="post" class="">
+
+                {% csrf_token %}
+                {% include "partials/form_fields.html" with form=registration_form %}
+                <div class="form__action clearfix">
+                    <button name="registration_submit" type="submit" class="form__btn right" value="Register"  data-loading-text="{% trans 'Registering...' %}">{% trans 'Register' %}</button>
+                </div>
+
+            </form>
+
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end Login Columns -->
+    </div>
+  </section>
+<!-- end LogIn Section -->
+
+
+{% endblock %}
+
+{% block breadcrumbs %}
+
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+
+    
+
+{% endblock content %}
