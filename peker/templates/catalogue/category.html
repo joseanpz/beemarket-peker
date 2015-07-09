@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block head_section %}
-    eco
+    
     {% if category.image %}
     <img src="{{ category.image.url }}" alt="{{ category.name }}" class="img-responsive">
     <h1 class="category__title">{{ category.name }}</h1>
@@ -18,7 +18,7 @@
     <span><a href="{{ homepage_url }}">{% trans "Home" %}</a> / {{ category.name }}  </span></span>
 {% endblock %}
 
-{% block description %} eco
+{% block description %} 
     {{ category.description|default:""|striptags }}
 {% endblock %}
 
@@ -41,7 +41,7 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
-    eco
+    
     {% if category.description %}
         <div class="row-fluid">
             <div class="span9"><p>{{ category.description|safe }}</p></div>

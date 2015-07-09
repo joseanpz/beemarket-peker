@@ -3,23 +3,43 @@
 {% load peker_currency_filters %}
 {% load purchase_info_tags %}
 {% load staticfiles %}
-
+{% load display_tags %}
+{% load thumbnail %}
 {% load basket_tags %}
 {% load i18n %}
 
 
 {% block product %}
 
-    <div class="product__item">
+    <div class="product__item
+    {% if is_new_product  %}
+      new-product     
+    {% elif is_product_in_basket %}     
+    added-product
+    {% endif %}">
         <div class="new-tag">
+                      <h1>Nuevo</h1>
+                    </div>
+        <div class="added-tag">
             <h1>Agregado</h1>
         </div>
         <div class="item__img">
+            {% comment %}
+                
             <a href="{{ product.get_absolute_url }}">
                 <img src="{{ product.primary_image.original.url }}" alt="{{ product.get_title }}"
                      class="img-responsive">
             </a>
-
+            {% endcomment %}
+            {% block product_image %}
+                <div class="image_container">
+                    {% with image=product.primary_image %}
+                        {% thumbnail image.original "640x480" crop="center" as thumb %}
+                        <a href="{{ product.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="img-responsive"></a>
+                        {% endthumbnail %}
+                    {% endwith %}
+                </div>
+            {% endblock %}
             {% purchase_info_for_product request product as session %}
             <div class="item__overlay clearfix">
                 <div class="overlay__btn details">
@@ -32,18 +52,17 @@
                             <form action="{% url 'basket:add' pk=product.pk %}" method="post">
                                 {% csrf_token %}
                                 {{ basket_form.as_p }}
-                                <button type="submit" class="">{% trans "Add to basket" %}</button>
-                                <i class="fa fa-cart-plus"></i>
+                                <button type="submit" class="btn-zero btn-add">{% trans "Add to basket" %} <i class="fa fa-cart-plus"></i></button>
+                                
                             </form>
                         {% else %}
-                            <a href="{{ product.get_absolute_url }}"><span>Añadir</span>
+                            <a href="{{ product.get_absolute_url }}"><span>{% trans "Add to basket" %}</span>
                                 <i class="fa fa-cart-plus"></i></a>
                         {% endif %}
                     {% else %}
 
-                        <a href="#">
+                        <a href="javascript:;">
                             <span>No disponible</span>
-                            <i class="fa fa-cart-plus"></i>
                         </a>
                     {% endif %}
 

@@ -7,7 +7,7 @@
 {% load peker_product_tags %}
 {% load staticfiles %}
 {% load replace %}
-
+{% load mathfilters %}
 {% load i18n %}
 
 {% block title %}
@@ -194,11 +194,33 @@
     {% if products %}
         <section>
             <div>
+               {% block product_grid %}
+               
+                    {% with cols=4 numerator=12%}
+                        <div class="row">
+                        {% for product in products %}
+                            <div class="col-md-{{ numerator|intdiv:cols }} col-sm-6">
+                                {% render_peker_product product %}
+                            </div>
+                            {% if forloop.counter|divisibleby:cols and not forloop.last%}
+                                </div>
+                                <div class="row">                   
+                            {% endif %}
+
+                            {% if forloop.last %}
+                                </div>
+                            {% endif %}               
+                        {% endfor %}
+                    {% endwith %}
+                {% endblock product_grid %}
+                {% comment %}
                 <ol class="row">
                     {% for product in products %}
-                        <div class="col-sm-6 col-xs-12  ">{% render_peker_product product %}</div>
+                        
+                        
                     {% endfor %}
                 </ol>
+                {% endcomment %}
                 {% include "partials/pagination.html" %}
             </div>
         </section>

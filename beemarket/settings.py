@@ -43,6 +43,9 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+
 
 # Application definition
 
@@ -64,6 +67,7 @@ INSTALLED_APPS = [
     'djfrontend',
     'djfrontend.skeleton',
     'templateaddons',
+    'mathfilters',
     #'dashboard.cmproducts',
     #'corsheaders',
     #'maravatioapp',
@@ -180,7 +184,10 @@ OSCAR_DEFAULT_CURRENCY = 'MXN'
 
 THUMBNAIL_DEBUG = True
 
-OSCAR_PRODUCTS_PER_PAGE = 2
+OSCAR_PRODUCTS_PER_PAGE = 6
+
+GRID_COLUMNS = 4
+
 
 OSCAR_INITIAL_ORDER_STATUS = 'Pending'
 OSCAR_INITIAL_LINE_STATUS = 'Pending'

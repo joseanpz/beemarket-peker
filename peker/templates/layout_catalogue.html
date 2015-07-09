@@ -5,11 +5,12 @@
 {% block content_peker %}
 	<div class="container">
 		<div class="row">
-			<aside class="sidebar profile-sidebar col-sm-3 col-md-3">
+			<section class="col-sm-12">
 			    {% block column_left %}{% endblock %}
-			</aside>
-
-			<div class="col-sm-9 col-md-9 profile-content">
+			</section>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
 				{% include "partials/alert_messages.html" %}
 				{% block header %}
 
