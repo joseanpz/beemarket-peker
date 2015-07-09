@@ -1,4 +1,4 @@
-{% extends "layout_2_col.html" %}
+{% extends "layout_catalogue.html" %}
 
 {% load basket_tags %}
 {% load promotion_tags %}
@@ -28,7 +28,7 @@
 {% endblock %}
 
 
-{% block side_categories %}
+{% comment %}{% block side_categories %}
 
     {% category_tree as tree_categories %}
     {% if tree_categories %}
@@ -116,7 +116,7 @@
         {% render_peker_product product %}
     {% endfor %}
     {% include "partials/pagination.html" %}
-{% endblock %}
+{% endblock %}{% endcomment %}
 
 
 {% block column_left %}
@@ -130,7 +130,7 @@
                     {% if tree_category.pk == category.pk %}
                         <strong>{{ tree_category.name }}</strong>
                     {% else %}
-                        <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+                        <a href="{% replace search="catalogue" replacement="search" %}{{ tree_category.get_absolute_url }}{% endreplace %}">{{ tree_category.name }}</a>
                     {% endif %}
 
                     {% if info.has_children %}<ul>{% else %}</li>{% endif %}
@@ -196,7 +196,7 @@
             <div>
                 <ol class="row">
                     {% for product in products %}
-                        <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3">{% render_peker_product product %}</li>
+                        <div class="col-sm-6 col-xs-12  ">{% render_peker_product product %}</div>
                     {% endfor %}
                 </ol>
                 {% include "partials/pagination.html" %}

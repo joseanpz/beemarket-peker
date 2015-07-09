@@ -5,21 +5,17 @@
 {% block content_peker %}
 	<div class="container">
 		<div class="row">
-			<aside class="sidebar profile-sidebar col-sm-4 col-md-4">
+			<aside class="sidebar profile-sidebar col-sm-3 col-md-3">
 			    {% block column_left %}{% endblock %}
 			</aside>
-			<div class="col-sm-8 col-md-8 profile-content">
+
+			<div class="col-sm-9 col-md-9 profile-content">
 				{% include "partials/alert_messages.html" %}
+				{% block header %}
 
-                {% block header %}
-				<div class="profile-header">
+				{% endblock %}
 
-				    <h1>{% block headertext %}{% endblock %}</h1>
-				</div>
 
-                {% endblock %}
-
-				
 				<div id="promotions">
 				    {% for promotion in promotions_page %}
 				        {% render_promotion promotion %}
